@@ -14,18 +14,18 @@ Student Guide milestone: Week 5 delivers **System Design and Database Design**; 
 ### 1. System Design
 
 #### 1.1 System Architecture
-System Overview / architecture diagram: components, external services, main data flows (via `diagram-writer`, canonical Mermaid/PlantUML). Every component and third-party service present in code must appear; none that is absent from code.
+Template guidance: the overall diagram with sub-systems, external systems and the relationships/connections among them, **plus an explanation of each diagram component** (modules, sub-systems, external systems). System Overview / architecture diagram: components, external services, main data flows (via `diagram-writer`, canonical Mermaid/PlantUML). Every component and third-party service present in code must appear; none that is absent from code.
 
 Add here (Review 2): **1.1.1 Technology Declaration** - table below.
 
 #### 1.2 Package Diagram
-Diagram plus:
+Template guidance: a package diagram **for each sub-system**, with an explanation of each package (or namespace). Diagram plus:
 | No | Package | Description |
 |---|---|---|
 Packages = real modules/namespaces/folders.
 
 ### 2. Database Design
-Logical ERD (via `diagram-writer`) plus table list:
+Template guidance: files description, database table relationships and table descriptions. Logical ERD (via `diagram-writer`) plus table list:
 | No | Table | Description |
 |---|---|---|
 Description cell also lists:
@@ -35,7 +35,7 @@ Description cell also lists:
 Rules: ERD, this table list and the database script contain the **same tables, columns, PK/FK**. Check both directions (in script not in ERD; in ERD not in script). Reference the script path.
 
 ### 3. Detailed Design
-Per feature/function `3.x <Feature/Function Name>`:
+Template guidance: detailed design per feature includes **Class Diagram, Class Specifications and Sequence Diagram(s)**. For features/functions with the same class/sequence structure, give the diagrams once and refer to them from the others. Per feature/function `3.x <Feature/Function Name>`:
 - 3.x.1 Class Diagram
 - 3.x.2 `<Sequence Diagram Name 1>`
 - 3.x.3 `<Sequence Diagram Name 2>`
