@@ -2,12 +2,13 @@
 
 A set of Agent Skills (open `SKILL.md` format) for writing and auditing project documentation from real code. Works with any agent that reads `SKILL.md` folders (Claude Code, Cursor, Gemini CLI, Codex, ...).
 
-Four areas:
+Five areas:
 
 1. **Code-first technical docs** - README, diagrams, API docs, ADRs.
 2. **SDLC project reports** - Report 1-7, Weekly Report, Project Tracking, built from the course templates.
 3. **Review 2 package** - BM01-BM04 with cross-form checks.
 4. **Audit** - docs-vs-code sync and the BM02 standard self-review run.
+5. **Release and operations docs** - changelog, release notes, runbook (not tied to any course).
 
 ## Principles
 
@@ -18,11 +19,11 @@ Four areas:
 
 ## Skills
 
-`Status` is the delivery batch: Batch 1 = code-first technical docs and audit, Batch 2 = SDLC course reports and the Review 2 package. All 10 skills pass `scripts/validate.py`.
+`Status` is the delivery batch: Batch 1 = code-first technical docs and audit, Batch 2 = SDLC course reports and the Review 2 package, Batch 3 = release and operations docs. All 12 skills pass `scripts/validate.py`.
 
 | Skill | Purpose | Status |
 |---|---|---|
-| [`docs-lifecycle`](docs-lifecycle/SKILL.md) | Orchestrator, 4 phases, routes to branches A-D | Batch 1 |
+| [`docs-lifecycle`](docs-lifecycle/SKILL.md) | Orchestrator, 4 phases, routes to branches A-E | Batch 1 |
 | [`readme-writer`](readme-writer/SKILL.md) | README and onboarding from manifests, Dockerfile, `.env.example` | Batch 1 |
 | [`diagram-writer`](diagram-writer/SKILL.md) | Use Case, ERD, Sequence, Activity, State, Architecture; Mermaid/PlantUML as source, `.drawio` export | Batch 1 |
 | [`api-doc-writer`](api-doc-writer/SKILL.md) | API spec (Markdown / OpenAPI 3.x) from routers, DTOs, validators, auth | Batch 1 |
@@ -32,6 +33,8 @@ Four areas:
 | [`pm-report-writer`](pm-report-writer/SKILL.md) | Report 1, 2, 7, Weekly, Tracking; Report 5 packaging from real test results | Batch 2 |
 | [`user-guide-writer`](user-guide-writer/SKILL.md) | Report 6 from the real UI; role-based, `[Screenshot: ...]` placeholders | Batch 2 |
 | [`review2-pack-writer`](review2-pack-writer/SKILL.md) | Review 2 forms BM01-BM04, cross-form checks, PDF naming, 7-item checklist | Batch 2 |
+| [`changelog-release-notes-writer`](changelog-release-notes-writer/SKILL.md) | CHANGELOG.md and release notes from the real git range; breaking changes found in the diff | Batch 3 |
+| [`runbook-writer`](runbook-writer/SKILL.md) | Deploy, rollback and symptom-based incident playbooks from compose, CI and infra files | Batch 3 |
 
 ## Routing branches (`docs-lifecycle`)
 
@@ -39,6 +42,9 @@ Four areas:
 - **B** SDLC project reports (Report 1-7, Weekly, Tracking)
 - **C** Docs-vs-code audit
 - **D** Review 2 Package
+- **E** Release and operations docs (changelog, release notes, runbook)
+
+Branches B and D are built on the SEP490 / SWP490 course templates; for a non-course project the orchestrator offers A, C and E only.
 
 Details: [`doc-routing-map.md`](docs-lifecycle/references/doc-routing-map.md).
 
@@ -61,9 +67,21 @@ docs-workflow-skills/
 ├── pm-report-writer/      SKILL.md + references/{report1-intro,report2-pmp-schedule,report3-tracking,report5-test-packaging,report7-final,weekly-report}-template.md
 │                          + scripts/{report5_stats,csv_to_xlsx,fill_docx_table}.py
 ├── user-guide-writer/     SKILL.md + references/report6-user-guide-template.md
+├── changelog-release-notes-writer/  SKILL.md + references/templates.md
+├── runbook-writer/        SKILL.md + references/runbook-template.md
 └── review2-pack-writer/   SKILL.md + references/{bm01..bm04 templates, review2-guide-summary}.md
                            + scripts/{check_review2,bm01_pages}.py
 ```
+
+## One-command install
+
+```powershell
+python scripts/install.py                    # links every skill into ~/.claude/skills
+python scripts/install.py --agent gemini     # presets: claude, gemini, cursor, codex, antigravity, windsurf, cline, roo, agents
+python scripts/install.py --dry-run          # preview; --copy to copy; --uninstall to remove
+```
+
+Junctions on Windows (no admin), symlinks elsewhere; existing skills are never overwritten.
 
 ## Helper scripts (optional, Python 3)
 
@@ -93,7 +111,7 @@ Shared by all skills: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, `FE-0
 
 ## Install
 
-Copy or symlink each skill folder (the 10 folders at the repo root, each containing `SKILL.md`) into your agent's skills directory, project-level or user-level. Folder names must stay equal to the `name` in each `SKILL.md`.
+Copy or symlink each skill folder (the 12 folders at the repo root, each containing `SKILL.md`) into your agent's skills directory, project-level or user-level. Folder names must stay equal to the `name` in each `SKILL.md`.
 
 | Agent | Project-level folder | Notes |
 |---|---|---|
