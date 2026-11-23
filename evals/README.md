@@ -25,5 +25,6 @@ Add a real failure you observed: one prompt, the smallest fixture that reproduce
 |---|---|---|---|---|
 | 2026-11-23 | Claude subagent, SKILL.md only | changelog-01 | PASS | Used the v1.0.0..v1.1.0 range, listed the `--legacy` removal found only in the diff as a breaking change, left out chore commits and listed them, no invented issue numbers. |
 | 2026-11-23 | Claude subagent, SKILL.md only | runbook-01 | PASS | Commands came from the compose and workflow files, contacts and dashboards left as `[Cần bổ sung]`, destructive steps flagged, gaps (no backup, no monitoring) reported. |
+| 2026-11-23 | Claude subagent, SKILL.md only | postmortem-writer | PASS | Timeline rows all sourced from the pasted log and git history, impact and owners left as `[Cần bổ sung]`, root cause marked likely with the evidence that would confirm it, no person named as the cause. |
 
 Method: one run per case by a Claude subagent that was handed only the SKILL.md (and the references the skill names) and the user request, in a throwaway folder. This tests behaviour (steps, hard stops, no invented facts), not triggering: the skill was given to the agent, not chosen by it. Graded by the same model family against the case's graders or checklist, so read it as a smoke test, not a benchmark. Multi-turn scenarios were run for turn 1 only.

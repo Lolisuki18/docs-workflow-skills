@@ -5,7 +5,7 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 ## Unreleased (next: 0.2.0)
 
 ### Added
-- Skills: `changelog-release-notes-writer`, `runbook-writer` and `postmortem-writer` (blameless review, not yet run on an agent); `docs-lifecycle` branch E (release and operations docs).
+- Skills: `changelog-release-notes-writer`, `runbook-writer` and `postmortem-writer` (blameless review; one smoke run, see `evals/README.md`); `docs-lifecycle` branch E (release and operations docs).
 - Two eval cases for the new skills (run once, results in `evals/README.md`).
 - `scripts/install.py`: links or copies the skills into an agent's skills folder (junctions on Windows, symlinks elsewhere; never overwrites); `--only` / `--exclude` to choose skills.
 - `scripts/readme-index.py`: generates the skill index in `README.md` from each `SKILL.md`; CI fails when it is out of date.
