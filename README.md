@@ -57,7 +57,7 @@ docs-workflow-skills/
 ├── docs-sync-auditor/     SKILL.md + references/bm02-standard-prompt.md
 ├── srs-sdd-writer/        SKILL.md + references/{report3-srs-template,report4-sdd-template,evaluation-rubric,examples}.md
 ├── pm-report-writer/      SKILL.md + references/{report1-intro,report2-pmp-schedule,report3-tracking,report5-test-packaging,report7-final,weekly-report}-template.md
-│                          + scripts/{report5_stats,csv_to_xlsx}.py
+│                          + scripts/{report5_stats,csv_to_xlsx,fill_docx_table}.py
 ├── user-guide-writer/     SKILL.md + references/report6-user-guide-template.md
 └── review2-pack-writer/   SKILL.md + references/{bm01..bm04 templates, review2-guide-summary}.md
                            + scripts/{check_review2,bm01_pages}.py
@@ -73,13 +73,14 @@ Scripts make rule checks exact instead of relying on the agent's arithmetic. Ski
 | `diagram-writer/scripts/drawio_gen.py` | Build a `.drawio` from a JSON node/edge list with a validated layered layout |
 | `pm-report-writer/scripts/report5_stats.py` | Report 5 counts, coverage and successful coverage from real result rows |
 | `pm-report-writer/scripts/csv_to_xlsx.py` | Template-shaped `.xlsx` (Tracking, Weekly) from CSV; needs `openpyxl` |
+| `pm-report-writer/scripts/fill_docx_table.py` | Fill a table of the course `.docx` template from CSV, keeping its formatting; refuses a changed header; needs `python-docx` |
 | `review2-pack-writer/scripts/check_review2.py` | Cross-form checks X1, X2, X3, X5, X6, X7, X9, X13 and the test-case formula |
 | `review2-pack-writer/scripts/bm01_pages.py` | Page count of BM01 sections 0-8 from a PDF/DOCX (needs `pypdf`; DOCX needs LibreOffice) |
 
 ## Validation and evals
 
 ```powershell
-python scripts/validate.py
+python scripts/validate.py   # Windows: py scripts/validate.py
 ```
 
 Checks `name` = folder, third-person `description` of at most 900 characters with `Do NOT use`, no duplicate triggers, files under 250 lines, balanced code fences, existing references and compiling scripts. The same command runs in GitHub Actions on every push and pull request. Behavioural test cases are in [`evals/`](evals/README.md) (written, not yet executed).
@@ -90,14 +91,33 @@ Shared by all skills: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, `FE-0
 
 ## Install
 
-Copy or symlink each skill folder (the 10 folders at the repo root) into your agent's skills directory (project-level or user-level). Examples (paths depend on the agent version; check its docs):
+Copy or symlink each skill folder (the 10 folders at the repo root, each containing `SKILL.md`) into your agent's skills directory, project-level or user-level. Folder names must stay equal to the `name` in each `SKILL.md`.
+
+| Agent | Project-level folder | Notes |
+|---|---|---|
+| Claude Code | `.claude/skills/` | user-level: `~/.claude/skills/` |
+| Cursor | `.cursor/skills/` | also reads `.claude/skills/` and `.codex/skills/`; enable Agent Skills in settings if your version requires it |
+| Gemini CLI | `.gemini/skills/` or `.agents/skills/` | user-level: `~/.gemini/skills/`; the feature may be experimental and need enabling; check with `gemini skills list` |
+| Codex | `.agents/skills/` | newer docs; an older page used `.codex/skills/` |
+| Antigravity, Windsurf, others | see the tool's documentation | not verified here; any tool that reads `SKILL.md` folders can use this repo unchanged |
+
+Paths were taken from each vendor's documentation at the time of writing; they change between versions, so confirm against your tool's docs. For a tool without skill support, add a rule file that tells the agent to read the matching `SKILL.md` before documentation tasks.
 
 ```powershell
-# Claude Code, project-level
+# project-level install for Claude Code (change the target for another agent)
+New-Item -ItemType Directory -Force .claude\skills | Out-Null
 Get-ChildItem -Directory | Where-Object { Test-Path (Join-Path $_.FullName 'SKILL.md') } | ForEach-Object { Copy-Item -Recurse $_.FullName .claude\skills\ }
 ```
 
-Each skill folder name equals the `name` in its frontmatter; do not rename folders.
+### Windows and Python
+
+The helper scripts and `scripts/validate.py` need Python 3. On Windows the `python` command can point to the Microsoft Store alias and fail with "The file cannot be accessed by the system". Use the launcher instead:
+
+```powershell
+py scripts/validate.py
+```
+
+or install Python from python.org and turn off *Settings -> Apps -> Advanced app settings -> App execution aliases* for `python.exe`. Replace `python` by `py` in every command in this repository on Windows.
 
 ## Usage
 

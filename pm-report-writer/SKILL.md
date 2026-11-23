@@ -62,6 +62,7 @@ Report 7 aggregates Reports 1-6; read its template and then the current source o
 ## Optional scripts (Python 3; skip and say so if unavailable)
 
 - `scripts/report5_stats.py results.csv [--unit]` - computes per-module counts, sub totals, test coverage and test successful coverage from real result rows; stops when the CSV has no rows. Always use it (or equivalent exact counting) for Report 5 numbers.
+- `scripts/fill_docx_table.py template.docx out.docx --csv rows.csv [--replace-sample|--append]` - fills one table of the course `.docx` (Record of Changes, WBS, risks, deliverables...) from CSV with the template formatting; never overwrites sample rows silently; `--list` shows the tables. Needs `python-docx`.
 - `scripts/csv_to_xlsx.py tracking|weekly --dir DIR --out FILE.xlsx` - builds a workbook with the template sheet names and exact headers from CSV files; refuses a changed header.
 
 ## Self-check before handover

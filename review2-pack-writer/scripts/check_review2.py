@@ -32,12 +32,37 @@ def find_section(sections, pattern):
             return b
     return None
 
+def split_row(line):
+    """Split a markdown table row on pipes, keeping escaped pipes (\\|), pipes inside
+    `code spans` and pipes inside [link](url) text/targets inside their cell."""
+    s = line.strip()
+    if s.startswith('|'): s = s[1:]
+    if s.endswith('|') and not s.endswith('\\|'): s = s[:-1]
+    cells, cur, i, tick, brk, par = [], '', 0, False, 0, 0
+    while i < len(s):
+        ch = s[i]
+        if ch == '\\' and i + 1 < len(s) and s[i + 1] == '|':
+            cur += '|'; i += 2; continue
+        if ch == '`': tick = not tick
+        elif not tick:
+            if ch == '[': brk += 1
+            elif ch == ']' and brk: brk -= 1
+            elif ch == '(' and i > 0 and s[i - 1] == ']': par = 1
+            elif ch == ')' and par: par = 0
+        if ch == '|' and not tick and not brk and not par:
+            cells.append(cur.strip()); cur = ''
+        else:
+            cur += ch
+        i += 1
+    cells.append(cur.strip())
+    return cells
+
 def tables(body):
     """Parse markdown tables in body -> list of (header, rows)."""
     out, cur = [], []
     for line in body.splitlines() + ['']:
         if line.strip().startswith('|'):
-            cur.append([c.strip() for c in line.strip().strip('|').split('|')])
+            cur.append(split_row(line))
         else:
             if len(cur) >= 2 and all(re.fullmatch(r':?-{2,}:?', c) or c == '' for c in cur[1]):
                 out.append((cur[0], [r for r in cur[2:]]))
