@@ -50,6 +50,7 @@ Not tied to any course; works for company and open-source projects.
 |---|---|---|---|
 | Changelog, release notes, "what changed in v1.2" / viết changelog, ghi chú phát hành | `changelog-release-notes-writer` | `CHANGELOG.md`, release notes text | git tags, `git log` between tags, merged PR text |
 | Runbook, ops guide, incident playbook, deploy and rollback / hướng dẫn vận hành | `runbook-writer` | `docs/runbook.md` | Dockerfile, compose, CI/CD, infra files, health endpoints, scripts |
+| Postmortem, incident report, RCA / báo cáo sự cố | `postmortem-writer` | `docs/postmortems/YYYY-MM-DD-title.md` | logs, deploy history, commits, alerts and messages the user supplies |
 
 Branches (B) and (D) apply only with SEP490 / SWP490 course context. Without it, skip them.
 

@@ -76,6 +76,7 @@ Delegate to the sub-skill matched in Phase 1:
 | BM01-BM04 Review 2 forms | `review2-pack-writer` |
 | CHANGELOG, release notes from git history | `changelog-release-notes-writer` |
 | Runbook, ops guide, incident playbooks | `runbook-writer` |
+| Postmortem, post-incident review | `postmortem-writer` |
 
 Pass the evidence list and the confirmed file list to the sub-skill. Do not draft inline what a sub-skill owns.
 
