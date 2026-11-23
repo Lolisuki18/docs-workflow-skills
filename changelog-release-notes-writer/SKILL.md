@@ -1,6 +1,6 @@
 ---
 name: changelog-release-notes-writer
-description: Writes CHANGELOG.md entries (Keep a Changelog format) and release notes from the real git history between two tags or commits, grouping changes by type, flagging breaking changes and migration steps, and linking commits or PRs only when they exist. Use when the user says "write the changelog", "release notes for v1.2", "what changed since the last tag", "generate release notes from git log", "update CHANGELOG.md", "viết changelog", "viết release notes", "tổng hợp thay đổi từ git log", "ghi chú phát hành", "bản phát hành này có gì mới". Do NOT use for README or onboarding docs (use readme-writer), architecture decisions (use adr-writer), SDLC course reports such as Report 7 (use pm-report-writer), commit messages or PR descriptions (use the commit-message-writer and pr-description-writer skills from pull-request-skills), or operations guides (use runbook-writer).
+description: Writes CHANGELOG.md entries (Keep a Changelog format) and release notes from the real git history between two tags or commits, grouping changes by type, flagging breaking changes and migration steps. Use when the user says 'write the changelog', 'release notes for v1.2', 'what changed since the last tag', 'generate release notes from git log'. Do NOT use for README or onboarding docs (use readme-writer), architecture decisions (use adr-writer), SDLC course reports such as Report 7 (use pm-report-writer).
 ---
 
 # changelog-release-notes-writer

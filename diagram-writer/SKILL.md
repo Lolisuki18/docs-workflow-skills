@@ -1,6 +1,6 @@
 ---
 name: diagram-writer
-description: Draws software diagrams (Use Case, ERD, Sequence, Activity, State Machine, System Architecture) from real entities, migrations, services, controllers or Use Case specs. Default output is diagram-as-code (Mermaid or PlantUML) stored in the repo as the source of truth; also exports clean editable .drawio (mxGraphModel XML) on request for drag-and-drop editing or polished images for Word/PDF. Use when the user says "draw ERD", "sequence diagram", "use case diagram", "activity diagram", "state machine", "architecture diagram", "export drawio", "vẽ sơ đồ", "vẽ ERD", "sơ đồ tuần tự", "sơ đồ use case", "sơ đồ trạng thái", "file drawio", "ve so do, so do trang thai". Do NOT use for writing prose documentation (readme-writer, api-doc-writer, adr-writer), for whole SRS/SDD documents (srs-sdd-writer), or for UI wireframes and mockups.
+description: Draws software diagrams (Use Case, ERD, Sequence, Activity, State Machine, System Architecture) from real entities, migrations, services and controllers, as Mermaid or PlantUML source with an optional .drawio export. Use when the user says 'draw ERD', 'sequence diagram', 'use case diagram', 'activity diagram'. Do NOT use for writing prose documentation (readme-writer, api-doc-writer, adr-writer), for whole SRS/SDD documents (srs-sdd-writer), or for UI wireframes and mockups.
 ---
 
 # diagram-writer

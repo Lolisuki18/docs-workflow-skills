@@ -1,6 +1,6 @@
 ---
 name: api-doc-writer
-description: Generates API specifications (Markdown or OpenAPI 3.x) by reading real routers, controllers, DTOs, validators and auth middleware, including status codes, error codes and realistic example payloads taken from the code. Use when the user says "document the API", "write API docs", "generate OpenAPI / Swagger", "list endpoints", "API reference", "tài liệu API", "viết đặc tả API", "liệt kê endpoint", "sinh OpenAPI", "tai lieu API, liet ke endpoint". Do NOT use for README (readme-writer), diagrams (diagram-writer), decision records (adr-writer), end-user guides (user-guide-writer), or for checking existing API docs against code (docs-sync-auditor). When the API table is part of an SDD, srs-sdd-writer calls this skill.
+description: Generates API specifications (Markdown or OpenAPI 3.x) by reading real routers, controllers, DTOs, validators and auth middleware, including status codes and auth rules. Use when the user says 'document the API', 'write API docs', 'generate OpenAPI / Swagger', 'list endpoints'. Do NOT use for README (readme-writer), diagrams (diagram-writer), decision records (adr-writer), end-user guides (user-guide-writer), or for checking existing API docs against code (docs-sync-auditor).
 ---
 
 # api-doc-writer
