@@ -1,6 +1,6 @@
 # Evals
 
-`evals.json` holds behavioural test cases for the 10 skills: 17 positive cases (prompt, fixture description, expected behaviour, forbidden behaviour) and 2 negative cases that must not trigger any skill.
+`evals.json` holds behavioural test cases for the 12 skills: 20 positive cases (prompt, fixture description, expected behaviour, forbidden behaviour) and 2 negative cases that must not trigger any skill.
 
 Status: **written, not executed yet**. Structure checks are automated (`python scripts/validate.py`); behaviour must be checked by running an agent.
 
