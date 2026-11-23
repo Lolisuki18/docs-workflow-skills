@@ -1,6 +1,6 @@
 ---
 name: postmortem-writer
-description: Writes a blameless post-incident review from real evidence (logs, deploy history, commits, alerts, chat excerpts the user supplies) — timeline, impact, root cause and contributing factors, detection and response, what went well and badly, and action items with owner placeholders — saved to docs/postmortems/. Use when the user says "write a postmortem", "incident report", "post-incident review", "what went wrong in last night's outage", "RCA document", "viết postmortem", "báo cáo sự cố", "tổng kết sự cố", "phân tích nguyên nhân gốc sau sự cố", "rút kinh nghiệm sau outage". Do NOT use for fixing the bug itself (use bug-investigator from dev-workflow-skills), runbooks or incident playbooks (use runbook-writer), release notes (use changelog-release-notes-writer), or recording an architecture decision (use adr-writer).
+description: Writes a blameless post-incident review from real evidence (logs, deploy history, commits, alerts, chat excerpts the user supplies). Use when the user says 'write a postmortem', 'incident report', 'post-incident review', 'RCA document'. Do NOT use for fixing the bug itself (use bug-investigator from dev-workflow-skills), runbooks or incident playbooks (use runbook-writer), release notes (use changelog-release-notes-writer), or recording an architecture decision (use adr-writer).
 ---
 
 # postmortem-writer

@@ -1,6 +1,6 @@
 ---
 name: user-guide-writer
-description: Writes Report 6 (Release Package & User Guides) - deliverable package, installation guide and role-based user manual - in friendly end-user language by reading the real frontend screens, routes, menus and labels, and marks every spot that needs an image with [Screenshot: description + area to circle in red]. Use when the user says "user guide", "user manual", "Report 6", "installation guide", "how-to for end users", "hướng dẫn sử dụng", "tài liệu người dùng", "viết Report 6", "hướng dẫn cài đặt cho người dùng", "manual theo vai trò", "huong dan su dung, tai lieu nguoi dung". Do NOT use for developer README (readme-writer), API docs (api-doc-writer), SRS/SDD (srs-sdd-writer), PM reports, weekly/tracking, test reports (pm-report-writer), Review 2 forms (review2-pack-writer), or docs-vs-code audits (docs-sync-auditor).
+description: Writes Report 6 (Release Package & User Guides) - deliverable package, installation guide and role-based user manual - in friendly end-user language from the real frontend screens and routes. Use when the user says 'user guide', 'user manual', 'Report 6', 'installation guide'. Do NOT use for developer README (readme-writer), API docs (api-doc-writer), SRS/SDD (srs-sdd-writer), PM and test reports (pm-report-writer), Review 2 forms (review2-pack-writer), or docs-vs-code audits (docs-sync-auditor).
 ---
 
 # user-guide-writer

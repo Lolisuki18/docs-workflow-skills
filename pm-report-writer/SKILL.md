@@ -1,6 +1,6 @@
 ---
 name: pm-report-writer
-description: Writes SDLC project-management reports from the course templates - Report 1 (Project Introduction), Report 2 (PMP + Schedule), Project Tracking (WBS/Issues/Defects/Q&A), Weekly Report, Report 7 (Final) - and packages Report 5 (Test Documentation / Test Report / Unit Test) strictly from real test results, never inventing Pass/Fail numbers. Outputs Markdown tables or CSV for pasting into the original .docx/.xlsx. Use when the user says "Report 1", "Report 2", "project plan", "PMP", "schedule", "project tracking", "WBS", "weekly report", "Report 5", "test report", "unit test report", "Report 7", "final report", "viết báo cáo tuần", "lập kế hoạch dự án", "đóng gói báo cáo test", "báo cáo cuối kỳ". Do NOT use for Report 3/4 (srs-sdd-writer), Report 6 (user-guide-writer), Review 2 BM forms (review2-pack-writer), designing test cases, README/API/ADR/diagrams, or docs-vs-code audits.
+description: Writes SDLC project-management reports from the course templates - Report 1 (Project Introduction), Report 2 (PMP + Schedule), Project Tracking (WBS/Issues/Defects/Q&A), Weekly Report. Use when the user says 'Report 1', 'Report 2', 'project plan', 'schedule'. Do NOT use for Report 3/4 (srs-sdd-writer), Report 6 (user-guide-writer), Review 2 BM forms (review2-pack-writer), designing test cases, README/API/ADR/diagrams, or docs-vs-code audits.
 ---
 
 # pm-report-writer

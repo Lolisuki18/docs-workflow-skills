@@ -1,6 +1,6 @@
 ---
 name: readme-writer
-description: Generates or updates README.md and onboarding instructions by reading the real package.json / pom.xml / *.csproj / pyproject.toml / Dockerfile / compose / .env.example / CI files, so a new machine can run the project with no guesswork. Use when the user says "write README", "update README", "onboarding guide", "how to run this project", "setup instructions", "viết README", "hướng dẫn cài đặt và chạy", "tài liệu onboarding", "viet README, huong dan cai dat". Do NOT use for API specs (api-doc-writer), diagrams (diagram-writer), architecture decisions (adr-writer), end-user manuals (user-guide-writer), SRS/SDD or project reports, or auditing existing docs (docs-sync-auditor).
+description: Generates or updates README.md and onboarding instructions by reading the real package.json / pom.xml / *.csproj / pyproject.toml / Dockerfile / compose / .env.example / CI files. Use when the user says 'write README', 'update README', 'onboarding guide', 'how to run this project'. Do NOT use for API specs (api-doc-writer), diagrams (diagram-writer), architecture decisions (adr-writer), end-user manuals (user-guide-writer), SRS/SDD or project reports, or auditing existing docs (docs-sync-auditor).
 ---
 
 # readme-writer

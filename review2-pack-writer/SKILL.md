@@ -1,6 +1,6 @@
 ---
 name: review2-pack-writer
-description: Prepares the SWP490 Review 2 package - Design Brief BM01 (with Appendix A), Self-Review BM02 (packaging only), Record of Changes BM03 and Commitment BM04 - from real repo evidence, enforcing cross-form checks (BM02 High Kept/Planned into BM01 section 5, BM01 within 4 A4 pages, minimum test-case formula, BM04 totals 8.1 = 8.2 = 8.3), PDF naming and the 7-item checklist. Use when the user says "Review 2", "BM01", "BM02", "BM03", "BM04", "Design Brief", "Review 2 Commitment", "Defense 1.1 targets", "chuẩn bị Review 2", "hồ sơ Review 2", "cam kết Review 2", "điền biểu mẫu BM". Do NOT use for SRS/SDD or Reports 1-7 (srs-sdd-writer, pm-report-writer), the user guide (user-guide-writer), running the BM02 prompt itself (docs-sync-auditor), diagrams, README, API docs or ADRs.
+description: Prepares the SWP490 Review 2 package - Design Brief BM01 (with Appendix A), Self-Review BM02 (packaging only), Record of Changes BM03 and Commitment BM04 - from real repo evidence. Use when the user says 'Review 2', 'BM01', 'BM02', 'BM03'. Do NOT use for SRS/SDD or Reports 1-7 (srs-sdd-writer, pm-report-writer), the user guide (user-guide-writer), running the BM02 prompt itself (docs-sync-auditor), diagrams, README, API docs or ADRs.
 ---
 
 # review2-pack-writer

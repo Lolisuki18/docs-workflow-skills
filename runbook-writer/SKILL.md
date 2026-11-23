@@ -1,6 +1,6 @@
 ---
 name: runbook-writer
-description: Writes operations runbooks from the real repository and infrastructure files — how to deploy, roll back, configure, monitor and recover the system, with symptom-based incident procedures, verified commands, escalation placeholders and a post-incident checklist. Use when the user says "write a runbook", "ops guide", "how do we deploy and roll back", "incident playbook", "on-call guide", "troubleshooting guide for production", "viết runbook", "hướng dẫn vận hành", "quy trình xử lý sự cố", "hướng dẫn deploy và rollback", "tài liệu cho người trực". Do NOT use for README or onboarding (use readme-writer), end-user manuals (use user-guide-writer), architecture decision records (use adr-writer), release notes (use changelog-release-notes-writer), or for creating pipelines and deploy scripts (use ci-cd-setup from dev-workflow-skills).
+description: Writes operations runbooks from the real repository and infrastructure files — how to deploy, roll back, configure, monitor and recover the system, with symptom-based incident procedures. Use when the user says 'write a runbook', 'ops guide', 'how do we deploy and roll back', 'incident playbook'. Do NOT use for README or onboarding (use readme-writer), end-user manuals (use user-guide-writer), architecture decision records (use adr-writer), release notes (use changelog-release-notes-writer).
 ---
 
 # runbook-writer
