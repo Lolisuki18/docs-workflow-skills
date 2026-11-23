@@ -59,6 +59,11 @@ Report 7 aggregates Reports 1-6; read its template and then the current source o
 - Issue Priority default `Medium`, Status `Open`; defect Status `Pending`.
 - Complexity: Simple / Medium / Complex (thresholds in the tracking reference).
 
+## Optional scripts (Python 3; skip and say so if unavailable)
+
+- `scripts/report5_stats.py results.csv [--unit]` - computes per-module counts, sub totals, test coverage and test successful coverage from real result rows; stops when the CSV has no rows. Always use it (or equivalent exact counting) for Report 5 numbers.
+- `scripts/csv_to_xlsx.py tracking|weekly --dir DIR --out FILE.xlsx` - builds a workbook with the template sheet names and exact headers from CSV files; refuses a changed header.
+
 ## Self-check before handover
 
 - [ ] Headings/columns identical to the template reference.

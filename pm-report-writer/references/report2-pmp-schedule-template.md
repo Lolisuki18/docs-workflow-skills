@@ -36,7 +36,7 @@ Template examples: Java Spring Boot, Git/Github (Mandatory). Use the project's r
 ### 3. Project Deliverables
 | # | Deliverable | Due Date | Notes |
 |---|---|---|---|
-Dates `dd/MM/yyyy`. Use the Student Guide milestones (Reports 1-7, Software Packages 1-3, Full Package, Final Package) with the team's real dates.
+Template guidance: internal and/or external deliverables; either a master-schedule table like this one or the more detailed structure of the sample schedule (PDF). Dates `dd/MM/yyyy`. Use the Student Guide milestones (Reports 1-7, Software Packages 1-3, Full Package, Final Package) with the team's real dates.
 
 ### 4. Responsibility Assignments
 Matrix: `Responsibility | <member 1> | <member 2> | ...` with one column per member (template header uses `Name + student code`). Cell codes (template legend): **D** = Do, **R** = Review, **S** = Support, **I** = Informed, blank = omitted. Rows in the template: Project Planning & Tracking, Prepare Project Introduction Document, Prepare SRS Document (Overview Part), ... one row per report/activity.
@@ -44,6 +44,7 @@ Matrix: `Responsibility | <member 1> | <member 2> | ...` with one column per mem
 ### 5. Project Communications
 | Communication Item | Who/ Target | Purpose | When, Frequency | Type, Tool, Method(s) |
 |---|---|---|---|---|
+Template guidance: the project communication plan, the tools to be used and the project interface.
 
 ### 6. Configuration Management
 #### 6.1 Document Management
