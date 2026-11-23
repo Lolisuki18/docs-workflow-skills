@@ -18,6 +18,8 @@ Four areas:
 
 ## Skills
 
+`Status` is the delivery batch: Batch 1 = code-first technical docs and audit, Batch 2 = SDLC course reports and the Review 2 package. All 10 skills pass `scripts/validate.py`.
+
 | Skill | Purpose | Status |
 |---|---|---|
 | [`docs-lifecycle`](docs-lifecycle/SKILL.md) | Orchestrator, 4 phases, routes to branches A-D | Batch 1 |
@@ -133,6 +135,17 @@ For `.drawio` files install **Draw.io Integration** (`hediet.vscode-drawio`) in 
 - `description`: third person; what it does + EN/VI trigger keywords + `Do NOT use for ...` exclusions.
 - `SKILL.md` < 250 lines; supporting material one level down in `references/` (documents) or `scripts/` (code).
 - No IDE-specific tool names.
+
+## Sibling repos
+
+| Repo | Covers |
+|---|---|
+| [`dev-workflow-skills`](https://github.com/Lolisuki18/dev-workflow-skills) | idea → plan → code → tests → audit, bug investigation |
+| [`pull-request-skills`](https://github.com/Lolisuki18/pull-request-skills) | PR description, PR review, review replies, pre-PR self-review, code comments |
+| [`qa-workflow-skills`](https://github.com/Lolisuki18/qa-workflow-skills) | QA/STLC: test plan, test matrix, E2E, defects, summary report |
+| [`docs-workflow-skills`](https://github.com/Lolisuki18/docs-workflow-skills) (this one) | documentation and SDLC reports |
+
+Each repo is self-contained. `code-comment-writer` (in `pull-request-skills`) covers comments inside source code; this repo covers documents.
 
 ## Source templates
 
