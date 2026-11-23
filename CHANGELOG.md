@@ -14,6 +14,7 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 - `LICENSE` (MIT).
 
 ### Changed
+- Skill descriptions are English only and shorter (4 trigger phrases, at most 650 characters) to cut the context every installed skill costs. The trigger evals keep their Vietnamese prompts to check that matching still works.
 - `docs-lifecycle` offers branches A, C and E only when there is no course context (B and D are built on the SEP490 / SWP490 templates).
 - `scripts/validate.py` is now the shared validator from `ai-workflow-suite` (allows `evals/`, checks `../<skill>/` links).
 - All twelve skills carry the same "untrusted content" rule.

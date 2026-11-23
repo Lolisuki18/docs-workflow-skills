@@ -17,19 +17,19 @@ Five areas:
 
 | Skill | What it does |
 |---|---|
-| [`adr-writer`](adr-writer/SKILL.md) | Writes Architecture Decision Records into docs/adr/NNN-ten-quyet-dinh.md with Context, Options Considered, Decision and Consequences/Trade-offs, grounded in the actual... |
-| [`api-doc-writer`](api-doc-writer/SKILL.md) | Generates API specifications (Markdown or OpenAPI 3.x) by reading real routers, controllers, DTOs, validators and auth middleware, including status codes, error codes... |
+| [`adr-writer`](adr-writer/SKILL.md) | Writes Architecture Decision Records into docs/adr/ with Context, Options Considered, Decision and Consequences/Trade-offs, grounded in the actual code, config and git... |
+| [`api-doc-writer`](api-doc-writer/SKILL.md) | Generates API specifications (Markdown or OpenAPI 3.x) by reading real routers, controllers, DTOs, validators and auth middleware, including status codes and auth rules |
 | [`changelog-release-notes-writer`](changelog-release-notes-writer/SKILL.md) | Writes CHANGELOG.md entries (Keep a Changelog format) and release notes from the real git history between two tags or commits, grouping changes by type, flagging... |
-| [`diagram-writer`](diagram-writer/SKILL.md) | Draws software diagrams (Use Case, ERD, Sequence, Activity, State Machine, System Architecture) from real entities, migrations, services, controllers or |
+| [`diagram-writer`](diagram-writer/SKILL.md) | Draws software diagrams (Use Case, ERD, Sequence, Activity, State Machine, System Architecture) from real entities, migrations, services and controllers, as Mermaid or... |
 | [`docs-lifecycle`](docs-lifecycle/SKILL.md) | Orchestrates documentation work in 4 phases (Discovery & Routing, Evidence Gathering, Drafting, Sync & Rubric Check) and routes to the right sub-skill - repo technical... |
-| [`docs-sync-auditor`](docs-sync-auditor/SKILL.md) | Audits existing documentation (README, API docs, diagrams, SRS/SDD, User Guide) against the source code or the latest git diff, read-only by default, outputting a... |
+| [`docs-sync-auditor`](docs-sync-auditor/SKILL.md) | Audits existing documentation (README, API docs, diagrams, SRS/SDD, User Guide) against the source code or the latest git diff, read-only by default |
 | [`pm-report-writer`](pm-report-writer/SKILL.md) | Writes SDLC project-management reports from the course templates - Report 1 (Project Introduction), Report 2 (PMP + Schedule), Project Tracking (WBS/Issues/Defects/Q&A)... |
-| [`postmortem-writer`](postmortem-writer/SKILL.md) | Writes a blameless post-incident review from real evidence (logs, deploy history, commits, alerts, chat excerpts the user supplies) — timeline, impact, root cause and... |
+| [`postmortem-writer`](postmortem-writer/SKILL.md) | Writes a blameless post-incident review from real evidence (logs, deploy history, commits, alerts, chat excerpts the user supplies) |
 | [`readme-writer`](readme-writer/SKILL.md) | Generates or updates README.md and onboarding instructions by reading the real package.json / pom.xml / *.csproj / pyproject.toml / Dockerfile / compose / .env.example /... |
 | [`review2-pack-writer`](review2-pack-writer/SKILL.md) | Prepares the SWP490 Review 2 package - Design Brief BM01 (with Appendix A), Self-Review BM02 (packaging only), Record of Changes BM03 and Commitment BM04 - from real... |
 | [`runbook-writer`](runbook-writer/SKILL.md) | Writes operations runbooks from the real repository and infrastructure files — how to deploy, roll back, configure, monitor and recover the system, with symptom-based... |
-| [`srs-sdd-writer`](srs-sdd-writer/SKILL.md) | Writes Report 3 (SRS) and Report 4 (SDD) from real code, DB schema and use-case input, following the course templates, with traceability Actor -> |
-| [`user-guide-writer`](user-guide-writer/SKILL.md) | Writes Report 6 (Release Package & User Guides) - deliverable package, installation guide and role-based user manual - in friendly end-user language by reading the real... |
+| [`srs-sdd-writer`](srs-sdd-writer/SKILL.md) | Writes Report 3 (SRS) and Report 4 (SDD) from real code, DB schema and use-case input, following the course templates, with requirement traceability and the four... |
+| [`user-guide-writer`](user-guide-writer/SKILL.md) | Writes Report 6 (Release Package & User Guides) - deliverable package, installation guide and role-based user manual - in friendly end-user language from the real... |
 <!-- skills:end -->
 
 ## Principles
@@ -127,7 +127,7 @@ Scripts make rule checks exact instead of relying on the agent's arithmetic. Ski
 python scripts/validate.py   # Windows: py scripts/validate.py
 ```
 
-Checks `name` = folder, third-person `description` of at most 900 characters with `Do NOT use`, no duplicate triggers, files under 250 lines, balanced code fences, existing references and scripts that compile without `SyntaxWarning`. The same command runs in GitHub Actions on every push and pull request. Behavioural test cases are in [`evals/`](evals/README.md) (written, not yet executed).
+Checks `name` = folder, third-person English `description` of at most 650 characters with `Do NOT use`, no duplicate triggers, files under 250 lines, balanced code fences, existing references and scripts that compile without `SyntaxWarning`. The same command runs in GitHub Actions on every push and pull request. Behavioural test cases are in [`evals/`](evals/README.md) (written, not yet executed).
 
 ## ID conventions
 
@@ -174,7 +174,7 @@ For `.drawio` files install **Draw.io Integration** (`hediet.vscode-drawio`) in 
 ## Conventions for skill authors
 
 - `name`: kebab-case, identical to the folder name.
-- `description`: third person; what it does + EN/VI trigger keywords + `Do NOT use for ...` exclusions.
+- `description`: third person; what it does + English trigger phrases + `Do NOT use for ...` exclusions.
 - `SKILL.md` < 250 lines; supporting material one level down in `references/` (documents) or `scripts/` (code).
 - No IDE-specific tool names.
 

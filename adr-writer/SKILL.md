@@ -1,6 +1,6 @@
 ---
 name: adr-writer
-description: Writes Architecture Decision Records into docs/adr/NNN-ten-quyet-dinh.md with Context, Options Considered, Decision and Consequences/Trade-offs, grounded in the actual code, config and git history. Use when the user says "write an ADR", "record this decision", "why did we choose X", "document architecture decision", "viết ADR", "ghi lại quyết định kiến trúc", "lưu quyết định thiết kế", "ghi lai quyet dinh kien truc". Do NOT use for README (readme-writer), API docs (api-doc-writer), diagrams (diagram-writer), SRS/SDD design sections (srs-sdd-writer), Review 2 Key Design Decisions table (review2-pack-writer), or for judging whether a decision is correct.
+description: Writes Architecture Decision Records into docs/adr/ with Context, Options Considered, Decision and Consequences/Trade-offs, grounded in the actual code, config and git history. Use when the user says 'write an ADR', 'record this decision', 'why did we choose X', 'document architecture decision'. Do NOT use for README (readme-writer), API docs (api-doc-writer), diagrams (diagram-writer), SRS/SDD design sections (srs-sdd-writer), or for judging whether a decision is correct.
 ---
 
 # adr-writer
