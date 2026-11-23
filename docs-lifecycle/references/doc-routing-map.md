@@ -42,13 +42,25 @@ Report 7 aggregates Reports 1-6: when requested, check the sources are current f
 
 Review 2 depends on branches (A)-(C): SRS/SDD (with 4 required diagram types), self-review run, repo tag `review-2`. Check these exist before drafting forms.
 
+## Branch (E) - Release and operations docs
+
+Not tied to any course; works for company and open-source projects.
+
+| User intent (EN / VI) | Skill | Default output | Primary evidence |
+|---|---|---|---|
+| Changelog, release notes, "what changed in v1.2" / viết changelog, ghi chú phát hành | `changelog-release-notes-writer` | `CHANGELOG.md`, release notes text | git tags, `git log` between tags, merged PR text |
+| Runbook, ops guide, incident playbook, deploy and rollback / hướng dẫn vận hành | `runbook-writer` | `docs/runbook.md` | Dockerfile, compose, CI/CD, infra files, health endpoints, scripts |
+
+Branches (B) and (D) apply only with SEP490 / SWP490 course context. Without it, skip them.
+
 ## Disambiguation
 
 - "Document the API" with no more detail -> (A) `api-doc-writer`. "Write the SRS" -> (B) `srs-sdd-writer`; the API table inside the SDD is produced by `api-doc-writer`, not a separate request.
 - "Check my docs" -> (C). "Fix my docs" -> (C) first (report), then the owning writer skill after the user confirms.
 - "Draw ER diagram" -> `diagram-writer`; "Describe the database" in the SDD -> `srs-sdd-writer`, which asks `diagram-writer` for the ERD.
 - Test case design belongs to QA/test skills, not here. Report 5 only *packages* real results.
-- Unclear request -> ask one question listing branches A-D; do not guess.
+- "Release notes" for users -> (E); Report 7 (final project report) -> (B).
+- Unclear request -> ask one question listing branches A-E; do not guess.
 
 ## Suggested ordering for a full documentation pass
 
@@ -56,3 +68,4 @@ Review 2 depends on branches (A)-(C): SRS/SDD (with 4 required diagram types), s
 2. (B) Report 3 -> Report 4 -> Report 5 packaging -> Report 6 -> Report 1/2 refresh -> Report 7
 3. (C) audit
 4. (D) Review 2 forms (when the milestone is near)
+5. (E) Runbook once deploy exists; changelog and release notes at every release

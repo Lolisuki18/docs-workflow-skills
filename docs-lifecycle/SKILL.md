@@ -1,6 +1,6 @@
 ---
 name: docs-lifecycle
-description: Orchestrates documentation work in 4 phases (Discovery & Routing, Evidence Gathering, Drafting, Sync & Rubric Check) and routes to the right sub-skill - repo technical docs (A), SDLC project reports Report 1-7 / Weekly / Tracking (B), docs-vs-code audit (C), or Review 2 package BM01-BM04 (D). Use when the user says "write the docs", "document this project", "docs workflow", "which doc should I write", "viết tài liệu cho dự án", "làm bộ tài liệu", "lập báo cáo đồ án", "chuẩn bị hồ sơ Review 2", "tài liệu nên viết gì", "viet tai lieu cho du an". Do NOT use for a single clearly scoped document when the user already names it (go straight to readme-writer, diagram-writer, api-doc-writer, adr-writer, srs-sdd-writer, pm-report-writer, user-guide-writer, docs-sync-auditor or review2-pack-writer), nor for writing feature code, tests or code comments.
+description: Orchestrates documentation work in 4 phases (Discovery & Routing, Evidence Gathering, Drafting, Sync & Rubric Check) and routes to the right sub-skill - repo technical docs (A), course SDLC reports Report 1-7 / Weekly / Tracking (B), docs-vs-code audit (C), course Review 2 package BM01-BM04 (D), or release and operations docs (E). Use when the user says "write the docs", "document this project", "docs workflow", "which doc should I write", "viết tài liệu cho dự án", "làm bộ tài liệu", "lập báo cáo đồ án", "chuẩn bị hồ sơ Review 2", "tài liệu nên viết gì", "viet tai lieu cho du an". Do NOT use for a single clearly scoped document when the user already names it (go straight to that skill), nor for feature code, tests or code comments.
 ---
 
 # docs-lifecycle
@@ -33,6 +33,8 @@ Start **every** response with `[Docs Phase X/4: <Phase name>]`, e.g. `[Docs Phas
    - **(B)** SDLC project reports - Report 1-7, Weekly Report, Project Tracking.
    - **(C)** Docs-vs-code sync audit.
    - **(D)** Review 2 Package - BM01-BM04 forms plus supporting docs.
+   - **(E)** Release and operations docs - changelog, release notes, runbook.
+   Branches **B** and **D** are built on the SEP490 / SWP490 course templates. If the user has no course context (a company or open-source project), offer only A, C and E, and say B and D do not apply.
    A request may span branches; split it into ordered steps.
 3. Report what exists, what is missing, and what looks stale (dates, git log vs doc mtime) - facts only.
 4. **HARD STOP.** Present: chosen branch(es), target sub-skill per deliverable, exact list of files to create or modify (with paths), and open questions. Do not continue until the user confirms.
@@ -72,6 +74,8 @@ Delegate to the sub-skill matched in Phase 1:
 | Report 6 User Guide | `user-guide-writer` |
 | Docs-vs-code audit, BM02 self-review run | `docs-sync-auditor` |
 | BM01-BM04 Review 2 forms | `review2-pack-writer` |
+| CHANGELOG, release notes from git history | `changelog-release-notes-writer` |
+| Runbook, ops guide, incident playbooks | `runbook-writer` |
 
 Pass the evidence list and the confirmed file list to the sub-skill. Do not draft inline what a sub-skill owns.
 

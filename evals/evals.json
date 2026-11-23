@@ -153,6 +153,30 @@
       "prompt": "Add unit tests for the discount calculation.",
       "expect": ["none of the documentation skills trigger"],
       "must_not": ["pm-report-writer activates for 'test'"]
+    },
+    {
+      "id": "changelog-01",
+      "skill": "changelog-release-notes-writer",
+      "setup": "Git repo with tags v1.0.0 and v1.1.0 and 12 commits between them: 4 feat, 5 fix, 2 chore, 1 commit that removes the `--legacy` CLI flag with no mention in its message.",
+      "prompt": "Write the changelog and release notes for v1.1.0.",
+      "expect": ["uses the range v1.0.0..v1.1.0 from git", "groups changes under Added/Changed/Fixed", "lists removal of --legacy as a breaking change found in the diff", "chore commits are omitted and listed in the handover"],
+      "must_not": ["invents issue numbers, PR links or contributor names", "says 'no breaking changes'", "vague lines such as 'various improvements'"]
+    },
+    {
+      "id": "runbook-01",
+      "skill": "runbook-writer",
+      "setup": "Repo with Dockerfile, docker-compose.yml (app + postgres), GitHub Actions deploy workflow, /health endpoint, no monitoring config, no backup script.",
+      "prompt": "Write a runbook for this service.",
+      "expect": ["commands come from compose and the workflow file", "includes deploy, rollback and symptom-based playbooks", "contacts and dashboards are [Cần bổ sung] placeholders", "Known gaps lists missing backup and monitoring"],
+      "must_not": ["invents hostnames, dashboards, alert names or phone numbers", "claims backups or monitoring exist", "contains secret values"]
+    },
+    {
+      "id": "lifecycle-no-course-01",
+      "skill": "docs-lifecycle",
+      "setup": "Open-source library repo, no mention of SEP490 or any course.",
+      "prompt": "Document this project properly, I need everything a maintainer would want.",
+      "expect": ["offers branches A, C and E", "states Report 1-7 and Review 2 forms do not apply without course context"],
+      "must_not": ["proposes BM01-BM04 or Report 3 SRS without being asked"]
     }
   ]
 }
