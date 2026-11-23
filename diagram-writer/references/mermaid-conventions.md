@@ -38,13 +38,13 @@ flowchart LR
   Patron([Patron])
   Admin([Administrator])
   subgraph System["Meal Ordering"]
-    UC1((View Menu))
-    UC2((Order a Meal))
+    UC01((View Menu))
+    UC02((Order a Meal))
   end
-  Patron --> UC1
-  Patron --> UC2
-  Admin --> UC1
-  UC2 -. "<<include>>" .-> UC1
+  Patron --> UC01
+  Patron --> UC02
+  Admin --> UC01
+  UC02 -. "<<include>>" .-> UC01
 ```
 - Actors outside the subgraph, use cases inside; actor names = roles in code/spec; use case names = verb + object.
 - `<<include>>`/`<<extend>>` only if specified. Number use cases to match the SRS table (`UC01`).
