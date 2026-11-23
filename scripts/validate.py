@@ -12,10 +12,10 @@ Checks per skill folder (any top-level folder containing SKILL.md):
   - only `references/`, `scripts/` sub folders, one level deep
   - every `references/x.md` or `scripts/x.py` mentioned in SKILL.md exists
   - a skill never links into another skill's folder with a relative path (`../`)
-  - .py files compile
+  - .py files compile without SyntaxWarning (use raw strings r'...' for regex and backslashes)
 Exit code 1 when any check fails.
 """
-import os, py_compile, re, sys, tempfile
+import os, re, sys, warnings
 
 root = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), '..'))
 skills = sorted(d for d in os.listdir(root) if os.path.isfile(os.path.join(root, d, 'SKILL.md')))
@@ -57,8 +57,11 @@ for s in skills:
                 if n >= 250: e.append(f'{os.path.relpath(p, root)} has {n} lines (>= 250)')
                 if not fence_ok(p): e.append(f'unbalanced code fence in {os.path.relpath(p, root)}')
             if x.endswith('.py'):
-                try: py_compile.compile(p, cfile=os.path.join(tempfile.gettempdir(), 'v.pyc'), doraise=True)
-                except py_compile.PyCompileError as ex: e.append(f'{os.path.relpath(p, root)} does not compile: {ex.msg}')
+                with open(p, encoding='utf-8') as fh: src = fh.read()
+                with warnings.catch_warnings():
+                    warnings.simplefilter('error')  # SyntaxWarning (e.g. invalid escape sequence) counts as failure
+                    try: compile(src, p, 'exec')
+                    except (SyntaxError, Warning) as ex: e.append(f'{os.path.relpath(p, root)} does not compile cleanly: {ex}')
     for ref in set(re.findall(r'`((?:references|scripts)/[\w\-./]+\.(?:md|py))`', t)):
         if not os.path.exists(os.path.join(d, ref)): e.append(f'mentioned file missing: {ref}')
     if '../' in t: e.append('relative path into another folder ("../") found in SKILL.md')

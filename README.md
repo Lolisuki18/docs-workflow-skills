@@ -73,7 +73,7 @@ Scripts make rule checks exact instead of relying on the agent's arithmetic. Ski
 | `diagram-writer/scripts/drawio_gen.py` | Build a `.drawio` from a JSON node/edge list with a validated layered layout |
 | `pm-report-writer/scripts/report5_stats.py` | Report 5 counts, coverage and successful coverage from real result rows |
 | `pm-report-writer/scripts/csv_to_xlsx.py` | Template-shaped `.xlsx` (Tracking, Weekly) from CSV; needs `openpyxl` |
-| `pm-report-writer/scripts/fill_docx_table.py` | Fill a table of the course `.docx` template from CSV, keeping its formatting; refuses a changed header; needs `python-docx` |
+| `pm-report-writer/scripts/fill_docx_table.py` | Fill a table of the course `.docx` template from CSV, keeping its formatting; refuses a changed header; `--header-row R` for two-level headers; needs `python-docx` |
 | `review2-pack-writer/scripts/check_review2.py` | Cross-form checks X1, X2, X3, X5, X6, X7, X9, X13 and the test-case formula |
 | `review2-pack-writer/scripts/bm01_pages.py` | Page count of BM01 sections 0-8 from a PDF/DOCX (needs `pypdf`; DOCX needs LibreOffice) |
 
@@ -83,7 +83,7 @@ Scripts make rule checks exact instead of relying on the agent's arithmetic. Ski
 python scripts/validate.py   # Windows: py scripts/validate.py
 ```
 
-Checks `name` = folder, third-person `description` of at most 900 characters with `Do NOT use`, no duplicate triggers, files under 250 lines, balanced code fences, existing references and compiling scripts. The same command runs in GitHub Actions on every push and pull request. Behavioural test cases are in [`evals/`](evals/README.md) (written, not yet executed).
+Checks `name` = folder, third-person `description` of at most 900 characters with `Do NOT use`, no duplicate triggers, files under 250 lines, balanced code fences, existing references and scripts that compile without `SyntaxWarning`. The same command runs in GitHub Actions on every push and pull request. Behavioural test cases are in [`evals/`](evals/README.md) (written, not yet executed).
 
 ## ID conventions
 

@@ -2,10 +2,12 @@
 """Fill a table of a course .docx template from a CSV file, keeping the template's own formatting.
 
 Usage:
-  python fill_docx_table.py template.docx out.docx --csv rows.csv [--table N] [--replace-sample | --append]
+  python fill_docx_table.py template.docx out.docx --csv rows.csv [--table N] [--header-row R] [--replace-sample | --append]
   python fill_docx_table.py template.docx --list            # show tables with their header rows
 
-The first CSV row must equal the table's header row (compared ignoring case and extra spaces), so
+The first CSV row must equal the table's header row (compared ignoring case and extra spaces; row 0 by
+default, or the row given by --header-row R for two-level headers whose first row is a merged group
+heading and whose real column names are on row R), so
 columns can never shift. The template file is never modified: the result goes to out.docx.
 Blank template rows are filled first; extra rows are created by copying the last row, so fonts,
 borders and widths stay as in the template. Rows that already contain sample text (for example
@@ -44,6 +46,7 @@ def set_text(cell, text):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('template'); ap.add_argument('out', nargs='?'); ap.add_argument('--csv'); ap.add_argument('--table', type=int)
+    ap.add_argument('--header-row', type=int, default=0, help='0-based index of the row holding the real column names (default 0)')
     ap.add_argument('--list', action='store_true'); ap.add_argument('--replace-sample', action='store_true'); ap.add_argument('--append', action='store_true')
     a = ap.parse_args()
     try:
@@ -53,7 +56,8 @@ def main():
     d = docx.Document(a.template)
     if a.list:
         for i, t in enumerate(d.tables):
-            print(f'[{i}] {len(t.rows)} rows x {len(t.columns)} cols | header: ' + ' | '.join(c.text.strip().replace("\n", " / ") for c in unique_cells(t.rows[0])))
+            for r in range(min(2, len(t.rows))):
+                print(f'[{i}] {len(t.rows)} rows x {len(t.columns)} cols | row {r}: ' + ' | '.join(c.text.strip().replace("\n", " / ") for c in unique_cells(t.rows[r])))
         return
     if not (a.csv and a.out): ap.error('give out.docx and --csv (or use --list)')
     rows = list(csv.reader(open(a.csv, encoding='utf-8-sig', newline='')))
@@ -63,11 +67,12 @@ def main():
     target = None
     for i in cands:
         t = d.tables[i]
-        if [norm(c.text) for c in unique_cells(t.rows[0])] == [norm(h) for h in header]:
+        if len(t.rows) > a.header_row and [norm(c.text) for c in unique_cells(t.rows[a.header_row])] == [norm(h) for h in header]:
             target = t; break
     if target is None:
         sys.exit('ERROR: no table whose header row equals the CSV header: ' + ' | '.join(header) + '\nUse --list to see the tables.')
-    body = target.rows[1:]
+    hr = a.header_row
+    body = target.rows[hr + 1:]
     if not body:
         sys.exit('ERROR: the table has no data row to copy formatting from (keep at least one row in the template).')
     template_tr = copy.deepcopy(target.rows[-1]._tr)  # formatting source, taken before any removal
@@ -77,7 +82,7 @@ def main():
                  f'{[c.text.strip() for c in unique_cells(sample[0])][:3]}). Use --replace-sample to remove them or --append to keep them.')
     if a.replace_sample:
         for r in sample: r._tr.getparent().remove(r._tr)
-        body = [r for r in target.rows[1:]]
+        body = [r for r in target.rows[hr + 1:]]
     free = [r for r in body if not any(c.text.strip() for c in unique_cells(r))]
     written = 0
     for rec in data:
