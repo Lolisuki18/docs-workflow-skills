@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "note": "Behavioural test cases. Run each prompt in a fresh agent session with the skills installed, against the fixture described in 'setup', then check every item in 'expect' and none in 'must_not'. Not executed yet.",
+  "cases": [
+    {
+      "id": "readme-01",
+      "skill": "readme-writer",
+      "setup": "Node 20 project: package.json with scripts dev/build/test, .env.example with DATABASE_URL and JWT_SECRET, no Dockerfile, CI runs npm ci && npm test.",
+      "prompt": "Write the README for this repo so a new teammate can run it.",
+      "expect": ["uses npm ci / npm run dev exactly as in package.json and CI", "lists DATABASE_URL and JWT_SECRET from .env.example", "states Node version only if found in engines/CI"],
+      "must_not": ["mentions Docker or docker compose", "invents scripts that are not in package.json", "marketing wording"]
+    },
+    {
+      "id": "readme-02",
+      "skill": "readme-writer",
+      "setup": "Repo with a pom.xml (Java 17, Spring Boot), docker-compose.yml with PostgreSQL 16, no .env.example.",
+      "prompt": "viet README cho project nay",
+      "expect": ["triggers readme-writer despite no diacritics", "uses mvnw/mvn commands, Java 17, PostgreSQL 16 from files", "marks missing env var documentation with [Cần bổ sung: ...]"],
+      "must_not": ["invents environment variables"]
+    },
+    {
+      "id": "diagram-01",
+      "skill": "diagram-writer",
+      "setup": "SQL migration creating users, orders, order_items (FKs). No payments table.",
+      "prompt": "Draw the ERD from the migrations.",
+      "expect": ["Mermaid erDiagram saved under docs/diagrams/", "exactly the three tables with PK/FK matching the script", "reports erd_vs_sql result or says it was not run"],
+      "must_not": ["adds entities not in the migration", "creates a .drawio file unprompted"]
+    },
+    {
+      "id": "diagram-02",
+      "skill": "diagram-writer",
+      "setup": "Same repo as diagram-01, no .vscode/extensions.json.",
+      "prompt": "Export the ERD as a .drawio file I can edit.",
+      "expect": ["keeps the Mermaid file as canonical and creates a .drawio from the same element list", "reminds to install hediet.vscode-drawio", "asks before editing .vscode/extensions.json"],
+      "must_not": ["edits .vscode/extensions.json without asking", "compressed (base64) diagram XML"]
+    },
+    {
+      "id": "api-01",
+      "skill": "api-doc-writer",
+      "setup": "Express app: 6 routes under /api/v1, JWT middleware on 4 of them, express-validator rules, central error handler.",
+      "prompt": "Document the API in Markdown.",
+      "expect": ["6 of 6 endpoints with full /api/v1 paths", "auth column matches middleware use per route", "status codes only those produced by code"],
+      "must_not": ["endpoints or fields not in code", "base URL that is not in config"]
+    },
+    {
+      "id": "adr-01",
+      "skill": "adr-writer",
+      "setup": "Repo using PostgreSQL via Prisma; docs/adr/ has 001 and 002.",
+      "prompt": "Write an ADR for choosing PostgreSQL over MongoDB.",
+      "expect": ["creates docs/adr/003-*.md and updates the index", "asks for or marks unknown rejected-option details instead of inventing benchmarks", "has Context, Options Considered, Decision, Consequences with a real cost"],
+      "must_not": ["edits ADR 001/002 decisions", "fabricated performance numbers"]
+    },
+    {
+      "id": "sync-01",
+      "skill": "docs-sync-auditor",
+      "setup": "README says 'npm run start:dev' (script is 'dev'); API doc lists POST /orders but code has /api/v1/orders.",
+      "prompt": "Check whether the docs still match the code.",
+      "expect": ["table with doc_file:line and code_file:line", "README command Critical, path mismatch Critical or Medium with reasoning", "changes no file before confirmation"],
+      "must_not": ["edits any file", "findings without code evidence"]
+    },
+    {
+      "id": "sync-02",
+      "skill": "docs-sync-auditor",
+      "setup": "Repo with registration form, SRS, SDD, code, DB script.",
+      "prompt": "Run the BM02 self-review prompt on this repo at tag review-2.",
+      "expect": ["uses the verbatim prompt from references/bm02-standard-prompt.md", "single table ID | Category | Location | Finding | Severity | Evidence plus top 5", "states what could not be verified"],
+      "must_not": ["rewrites or removes findings afterwards", "modifies any file"]
+    },
+    {
+      "id": "srs-01",
+      "skill": "srs-sdd-writer",
+      "setup": "Web app with 3 roles, 8 screens, 5 entities, REST API.",
+      "prompt": "Write Report 3 (SRS) for this project.",
+      "expect": ["follows template headings and numbering", "actors = roles in code", "traceability matrix FR -> UC -> entity -> API/screen with gaps listed", "NFRs have metric, threshold, method or are marked [Cần bổ sung]"],
+      "must_not": ["template sample rows (Menu Manager, Order a Meal)", "untestable acceptance criteria"]
+    },
+    {
+      "id": "srs-02",
+      "skill": "srs-sdd-writer",
+      "setup": "Same repo, Report 3 done.",
+      "prompt": "Now Report 4 (SDD) for Review 2.",
+      "expect": ["architecture diagram, logical ERD, state machine and activity diagram requested via diagram-writer", "technology declaration table incl. environments with rollback and AI tools", "DB script vs ERD checked both ways", "rubric result block in handover"],
+      "must_not": ["missing AI tools row without [Cần bổ sung]"]
+    },
+    {
+      "id": "pm-01",
+      "skill": "pm-report-writer",
+      "setup": "Repo with git history of the last 7 days (12 commits by 3 authors); no tracker.",
+      "prompt": "Write this week's weekly report.",
+      "expect": ["four sections I-IV with template headers", "tasks derived from the real commits", "asks for or marks deadlines/blockers not in evidence"],
+      "must_not": ["invented tasks or statuses", "Notes about work not in git"]
+    },
+    {
+      "id": "pm-02",
+      "skill": "pm-report-writer",
+      "setup": "Repo with a JUnit XML report: 40 tests, 36 passed, 3 failed, 1 skipped.",
+      "prompt": "Package Report 5 test statistics from the test run.",
+      "expect": ["counts exactly 36/3/1 mapped to modules by test names", "coverage computed with the template formulas", "does not write new test cases"],
+      "must_not": ["different numbers", "invented tester names or dates"]
+    },
+    {
+      "id": "pm-03",
+      "skill": "pm-report-writer",
+      "setup": "Repo with no test run output of any kind.",
+      "prompt": "Fill the Report 5 test report with the results.",
+      "expect": ["says there are no real results", "uses [Cần bổ sung: chưa có kết quả chạy test]", "offers how to obtain results"],
+      "must_not": ["any Pass/Fail numbers"]
+    },
+    {
+      "id": "ug-01",
+      "skill": "user-guide-writer",
+      "setup": "React app: routes /login, /orders, /admin/users; buttons labelled 'Place order' and 'Save'; roles Customer, Admin guarded by routes.",
+      "prompt": "Write the user guide (Report 6) for customers and admins.",
+      "expect": ["workflows split by role", "button labels exactly 'Place order' and 'Save'", "[Screenshot: ...] with red-circle target after key steps", "no backend terms"],
+      "must_not": ["menu or button names not in the code", "words like API, endpoint, database"]
+    },
+    {
+      "id": "r2-01",
+      "skill": "review2-pack-writer",
+      "setup": "Team of 3; BM02 findings include SR-04 High 'Kept' and SR-07 High 'Planned'; draft BM01 section 5 lists only SR-04.",
+      "prompt": "Check my Review 2 forms before I submit.",
+      "expect": ["flags SR-07 missing from BM01 section 5 (X1)", "checks 3 workflows minimum, formula arithmetic, BM04 totals", "prints the 5 PDF file names and the 7-item checklist"],
+      "must_not": ["fills reviewer-only fields", "edits BM02 findings"]
+    },
+    {
+      "id": "r2-02",
+      "skill": "review2-pack-writer",
+      "setup": "BM01 section 3 has 6 decisions and section 4 has 2 risks.",
+      "prompt": "Prepare BM01 for Review 2.",
+      "expect": ["reports exactly-5 decisions and exactly-3 risks violations", "word budget estimate 1100-1300 with 'estimate' label unless a PDF was measured"],
+      "must_not": ["claims the page count without measuring"]
+    },
+    {
+      "id": "lifecycle-01",
+      "skill": "docs-lifecycle",
+      "setup": "Empty docs/ folder, working app.",
+      "prompt": "Document this project.",
+      "expect": ["response starts with [Docs Phase 1/4: ...]", "routes to branches and lists files to create, then HARD STOP for confirmation", "offers to save evidence to docs/_evidence.md"],
+      "must_not": ["writes any file before confirmation"]
+    },
+    {
+      "id": "negative-01",
+      "skill": "none",
+      "setup": "Any repo.",
+      "prompt": "Fix the null pointer bug in OrderService.",
+      "expect": ["none of the documentation skills trigger"],
+      "must_not": ["docs-lifecycle or any writer skill activates"]
+    },
+    {
+      "id": "negative-02",
+      "skill": "none",
+      "setup": "Any repo.",
+      "prompt": "Add unit tests for the discount calculation.",
+      "expect": ["none of the documentation skills trigger"],
+      "must_not": ["pm-report-writer activates for 'test'"]
+    }
+  ]
+}
