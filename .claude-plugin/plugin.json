@@ -1,0 +1,19 @@
+{
+  "name": "docs-workflow-skills",
+  "version": "0.2.0",
+  "description": "Thirteen agent skills for documentation written from real code: README, diagrams, API docs, ADRs, changelog, runbook, postmortem, SDLC reports and the Review 2 package.",
+  "author": {
+    "name": "Lolisuki18",
+    "url": "https://github.com/Lolisuki18"
+  },
+  "homepage": "https://github.com/Lolisuki18/docs-workflow-skills",
+  "repository": "https://github.com/Lolisuki18/docs-workflow-skills",
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "readme",
+    "adr",
+    "api-docs"
+  ],
+  "skills": "."
+}

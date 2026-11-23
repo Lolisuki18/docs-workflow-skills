@@ -10,6 +10,28 @@ Five areas:
 4. **Audit** - docs-vs-code sync and the BM02 standard self-review run.
 5. **Release and operations docs** - changelog, release notes, runbook (not tied to any course).
 
+## Skill index
+
+<!-- skills:start -->
+**13 skills.** This index is generated from each `SKILL.md`; run `python scripts/readme-index.py` to refresh it.
+
+| Skill | What it does |
+|---|---|
+| [`adr-writer`](adr-writer/SKILL.md) | Writes Architecture Decision Records into docs/adr/NNN-ten-quyet-dinh.md with Context, Options Considered, Decision and Consequences/Trade-offs, grounded in the actual... |
+| [`api-doc-writer`](api-doc-writer/SKILL.md) | Generates API specifications (Markdown or OpenAPI 3.x) by reading real routers, controllers, DTOs, validators and auth middleware, including status codes, error codes... |
+| [`changelog-release-notes-writer`](changelog-release-notes-writer/SKILL.md) | Writes CHANGELOG.md entries (Keep a Changelog format) and release notes from the real git history between two tags or commits, grouping changes by type, flagging... |
+| [`diagram-writer`](diagram-writer/SKILL.md) | Draws software diagrams (Use Case, ERD, Sequence, Activity, State Machine, System Architecture) from real entities, migrations, services, controllers or |
+| [`docs-lifecycle`](docs-lifecycle/SKILL.md) | Orchestrates documentation work in 4 phases (Discovery & Routing, Evidence Gathering, Drafting, Sync & Rubric Check) and routes to the right sub-skill - repo technical... |
+| [`docs-sync-auditor`](docs-sync-auditor/SKILL.md) | Audits existing documentation (README, API docs, diagrams, SRS/SDD, User Guide) against the source code or the latest git diff, read-only by default, outputting a... |
+| [`pm-report-writer`](pm-report-writer/SKILL.md) | Writes SDLC project-management reports from the course templates - Report 1 (Project Introduction), Report 2 (PMP + Schedule), Project Tracking (WBS/Issues/Defects/Q&A)... |
+| [`postmortem-writer`](postmortem-writer/SKILL.md) | Writes a blameless post-incident review from real evidence (logs, deploy history, commits, alerts, chat excerpts the user supplies) — timeline, impact, root cause and... |
+| [`readme-writer`](readme-writer/SKILL.md) | Generates or updates README.md and onboarding instructions by reading the real package.json / pom.xml / *.csproj / pyproject.toml / Dockerfile / compose / .env.example /... |
+| [`review2-pack-writer`](review2-pack-writer/SKILL.md) | Prepares the SWP490 Review 2 package - Design Brief BM01 (with Appendix A), Self-Review BM02 (packaging only), Record of Changes BM03 and Commitment BM04 - from real... |
+| [`runbook-writer`](runbook-writer/SKILL.md) | Writes operations runbooks from the real repository and infrastructure files — how to deploy, roll back, configure, monitor and recover the system, with symptom-based... |
+| [`srs-sdd-writer`](srs-sdd-writer/SKILL.md) | Writes Report 3 (SRS) and Report 4 (SDD) from real code, DB schema and use-case input, following the course templates, with traceability Actor -> |
+| [`user-guide-writer`](user-guide-writer/SKILL.md) | Writes Report 6 (Release Package & User Guides) - deliverable package, installation guide and role-based user manual - in friendly end-user language by reading the real... |
+<!-- skills:end -->
+
 ## Principles
 
 - **Evidence before prose.** Skills read code, config, DB scripts, git log or supplied documents first. No invented endpoints, commands, env vars, UI labels or progress numbers.
@@ -19,7 +41,7 @@ Five areas:
 
 ## Skills
 
-`Status` is the delivery batch: Batch 1 = code-first technical docs and audit, Batch 2 = SDLC course reports and the Review 2 package, Batch 3 = release and operations docs. All 12 skills pass `scripts/validate.py`.
+`Status` is the delivery batch: Batch 1 = code-first technical docs and audit, Batch 2 = SDLC course reports and the Review 2 package, Batch 3 = release and operations docs. All 13 skills pass `scripts/validate.py`.
 
 | Skill | Purpose | Status |
 |---|---|---|
@@ -35,6 +57,7 @@ Five areas:
 | [`review2-pack-writer`](review2-pack-writer/SKILL.md) | Review 2 forms BM01-BM04, cross-form checks, PDF naming, 7-item checklist | Batch 2 |
 | [`changelog-release-notes-writer`](changelog-release-notes-writer/SKILL.md) | CHANGELOG.md and release notes from the real git range; breaking changes found in the diff | Batch 3 |
 | [`runbook-writer`](runbook-writer/SKILL.md) | Deploy, rollback and symptom-based incident playbooks from compose, CI and infra files | Batch 3 |
+| [`postmortem-writer`](postmortem-writer/SKILL.md) | Blameless post-incident review from real evidence: timeline, causes, impact, action items | Batch 3 |
 
 ## Routing branches (`docs-lifecycle`)
 
@@ -42,7 +65,7 @@ Five areas:
 - **B** SDLC project reports (Report 1-7, Weekly, Tracking)
 - **C** Docs-vs-code audit
 - **D** Review 2 Package
-- **E** Release and operations docs (changelog, release notes, runbook)
+- **E** Release and operations docs (changelog, release notes, runbook, postmortem)
 
 Branches B and D are built on the SEP490 / SWP490 course templates; for a non-course project the orchestrator offers A, C and E only.
 
@@ -69,6 +92,7 @@ docs-workflow-skills/
 ├── user-guide-writer/     SKILL.md + references/report6-user-guide-template.md
 ├── changelog-release-notes-writer/  SKILL.md + references/templates.md
 ├── runbook-writer/        SKILL.md + references/runbook-template.md
+├── postmortem-writer/     SKILL.md + references/postmortem-template.md
 └── review2-pack-writer/   SKILL.md + references/{bm01..bm04 templates, review2-guide-summary}.md
                            + scripts/{check_review2,bm01_pages}.py
 ```
@@ -111,7 +135,7 @@ Shared by all skills: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, `FE-0
 
 ## Install
 
-Copy or symlink each skill folder (the 12 folders at the repo root, each containing `SKILL.md`) into your agent's skills directory, project-level or user-level. Folder names must stay equal to the `name` in each `SKILL.md`.
+Copy or symlink each skill folder (the 13 folders at the repo root, each containing `SKILL.md`) into your agent's skills directory, project-level or user-level. Folder names must stay equal to the `name` in each `SKILL.md`.
 
 | Agent | Project-level folder | Notes |
 |---|---|---|
