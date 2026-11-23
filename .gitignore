@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+# local evidence logs produced by docs-lifecycle in a target repo are not part of this repo
+docs/_evidence.md
