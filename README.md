@@ -45,17 +45,48 @@ Details: [`doc-routing-map.md`](docs-lifecycle/references/doc-routing-map.md).
 ```text
 docs-workflow-skills/
 ├── README.md
+├── scripts/validate.py          structure checks for all skills (also run by CI)
+├── evals/                       behavioural test cases (evals.json + how to run)
+├── .github/workflows/validate.yml
 ├── docs-lifecycle/        SKILL.md + references/doc-routing-map.md
-├── readme-writer/         SKILL.md
-├── diagram-writer/        SKILL.md + references/{mermaid-conventions,drawio-xml-guide}.md
-├── api-doc-writer/        SKILL.md
+├── readme-writer/         SKILL.md + references/examples.md
+├── diagram-writer/        SKILL.md + references/{mermaid-conventions,drawio-xml-guide,examples}.md
+│                          + scripts/{drawio_gen,erd_vs_sql}.py
+├── api-doc-writer/        SKILL.md + references/examples.md
 ├── adr-writer/            SKILL.md
 ├── docs-sync-auditor/     SKILL.md + references/bm02-standard-prompt.md
-├── srs-sdd-writer/        SKILL.md + references/{report3-srs-template,report4-sdd-template,evaluation-rubric}.md
+├── srs-sdd-writer/        SKILL.md + references/{report3-srs-template,report4-sdd-template,evaluation-rubric,examples}.md
 ├── pm-report-writer/      SKILL.md + references/{report1-intro,report2-pmp-schedule,report3-tracking,report5-test-packaging,report7-final,weekly-report}-template.md
+│                          + scripts/{report5_stats,csv_to_xlsx}.py
 ├── user-guide-writer/     SKILL.md + references/report6-user-guide-template.md
 └── review2-pack-writer/   SKILL.md + references/{bm01..bm04 templates, review2-guide-summary}.md
+                           + scripts/{check_review2,bm01_pages}.py
 ```
+
+## Helper scripts (optional, Python 3)
+
+Scripts make rule checks exact instead of relying on the agent's arithmetic. Skills use them when Python is available and say so when it is not.
+
+| Script | What it does |
+|---|---|
+| `diagram-writer/scripts/erd_vs_sql.py` | Compare a Mermaid ERD with SQL `CREATE TABLE` statements, both directions |
+| `diagram-writer/scripts/drawio_gen.py` | Build a `.drawio` from a JSON node/edge list with a validated layered layout |
+| `pm-report-writer/scripts/report5_stats.py` | Report 5 counts, coverage and successful coverage from real result rows |
+| `pm-report-writer/scripts/csv_to_xlsx.py` | Template-shaped `.xlsx` (Tracking, Weekly) from CSV; needs `openpyxl` |
+| `review2-pack-writer/scripts/check_review2.py` | Cross-form checks X1, X2, X3, X5, X6, X7, X9, X13 and the test-case formula |
+| `review2-pack-writer/scripts/bm01_pages.py` | Page count of BM01 sections 0-8 from a PDF/DOCX (needs `pypdf`; DOCX needs LibreOffice) |
+
+## Validation and evals
+
+```powershell
+python scripts/validate.py
+```
+
+Checks `name` = folder, third-person `description` of at most 900 characters with `Do NOT use`, no duplicate triggers, files under 250 lines, balanced code fences, existing references and compiling scripts. The same command runs in GitHub Actions on every push and pull request. Behavioural test cases are in [`evals/`](evals/README.md) (written, not yet executed).
+
+## ID conventions
+
+Shared by all skills: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, `FE-01`, `LI-01`, `F-01`, `WF-01`, `DS-01a/b`, `D1-D5`, `R1-R3`, `SR-01`, `TC-F01-01`.
 
 ## Install
 
@@ -80,7 +111,7 @@ For `.drawio` files install **Draw.io Integration** (`hediet.vscode-drawio`) in 
 
 - `name`: kebab-case, identical to the folder name.
 - `description`: third person; what it does + EN/VI trigger keywords + `Do NOT use for ...` exclusions.
-- `SKILL.md` < 250 lines; supporting material one level down in `references/`.
+- `SKILL.md` < 250 lines; supporting material one level down in `references/` (documents) or `scripts/` (code).
 - No IDE-specific tool names.
 
 ## Source templates
