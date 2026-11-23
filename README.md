@@ -2,10 +2,12 @@
 
 A set of Agent Skills (open `SKILL.md` format) for writing and auditing project documentation from real code. Works with any agent that reads `SKILL.md` folders (Claude Code, Cursor, Gemini CLI, Codex, ...).
 
-Two areas:
+Four areas:
 
-1. **Code-first technical docs** - README, diagrams, API docs, ADRs, docs-vs-code audit.
-2. **SDLC project reports** - Report 1-7, Weekly Report, Project Tracking, and the Review 2 package (BM01-BM04), built from the course templates.
+1. **Code-first technical docs** - README, diagrams, API docs, ADRs.
+2. **SDLC project reports** - Report 1-7, Weekly Report, Project Tracking, built from the course templates.
+3. **Review 2 package** - BM01-BM04 with cross-form checks.
+4. **Audit** - docs-vs-code sync and the BM02 standard self-review run.
 
 ## Principles
 
@@ -24,10 +26,10 @@ Two areas:
 | [`api-doc-writer`](skills/api-doc-writer/SKILL.md) | API spec (Markdown / OpenAPI 3.x) from routers, DTOs, validators, auth | Batch 1 |
 | [`adr-writer`](skills/adr-writer/SKILL.md) | Architecture Decision Records in `docs/adr/` | Batch 1 |
 | [`docs-sync-auditor`](skills/docs-sync-auditor/SKILL.md) | Read-only docs-vs-code audit; BM02 Standard Mode | Batch 1 |
-| `srs-sdd-writer` | Report 3 SRS, Report 4 SDD with traceability and rubric | Batch 2 (planned) |
-| `pm-report-writer` | Report 1, 2, 5 (packaging), 7, Weekly, Tracking | Batch 2 (planned) |
-| `user-guide-writer` | Report 6 Release Package & User Guides | Batch 2 (planned) |
-| `review2-pack-writer` | Review 2 forms BM01-BM04, cross-checks, naming, checklist | Batch 2 (planned) |
+| [`srs-sdd-writer`](skills/srs-sdd-writer/SKILL.md) | Report 3 SRS, Report 4 SDD; traceability, 4 required diagrams, technology declaration, rubric self-check | Batch 2 |
+| [`pm-report-writer`](skills/pm-report-writer/SKILL.md) | Report 1, 2, 7, Weekly, Tracking; Report 5 packaging from real test results | Batch 2 |
+| [`user-guide-writer`](skills/user-guide-writer/SKILL.md) | Report 6 from the real UI; role-based, `[Screenshot: ...]` placeholders | Batch 2 |
+| [`review2-pack-writer`](skills/review2-pack-writer/SKILL.md) | Review 2 forms BM01-BM04, cross-form checks, PDF naming, 7-item checklist | Batch 2 |
 
 ## Routing branches (`docs-lifecycle`)
 
@@ -50,10 +52,10 @@ docs-workflow-skills/
     ├── api-doc-writer/        SKILL.md
     ├── adr-writer/            SKILL.md
     ├── docs-sync-auditor/     SKILL.md + references/bm02-standard-prompt.md
-    ├── srs-sdd-writer/        (batch 2)
-    ├── pm-report-writer/      (batch 2)
-    ├── user-guide-writer/     (batch 2)
-    └── review2-pack-writer/   (batch 2)
+    ├── srs-sdd-writer/        SKILL.md + references/{report3-srs-template,report4-sdd-template,evaluation-rubric}.md
+    ├── pm-report-writer/      SKILL.md + references/{report1-intro,report2-pmp-schedule,report3-tracking,report5-test-packaging,report7-final,weekly-report}-template.md
+    ├── user-guide-writer/     SKILL.md + references/report6-user-guide-template.md
+    └── review2-pack-writer/   SKILL.md + references/{bm01..bm04 templates, review2-guide-summary}.md
 ```
 
 ## Install
@@ -84,4 +86,4 @@ For `.drawio` files install **Draw.io Integration** (`hediet.vscode-drawio`) in 
 
 ## Source templates
 
-SDLC skills (batch 2) are based on the course template set (SEP490 Report 1-7, Weekly Report, Project Tracking, Test Report/Unit Test, Student Guide, Evaluation Form) and the SWP490 Review 2 package (BM01-BM04 and the preparation guide).
+SDLC skills are based on the course template set (SEP490 Report 1-7, Weekly Report, Project Tracking, Test Report/Unit Test, Student Guide, Evaluation Form) and the SWP490 Review 2 package (BM01-BM04 and the preparation guide).

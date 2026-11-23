@@ -3,7 +3,7 @@
 Source: "Hướng dẫn chuẩn bị Review 2" v1.0 (10/2026), section 05, and form BM02 section 2.
 **Do not modify, translate, shorten or extend the text between the markers.** It is used exactly as issued by the course.
 
-> Maintenance note: the text was recovered from the PDF's text layer. If the course issues a new version, replace the block below with the new official text and bump the version line above.
+> Verification: the block below was compared programmatically against the prompt cell of `SWP490_R2_BM02_Self_Review_Report_1.docx` and is identical (only the trailing newline differs). If the course issues a new version, replace the block with the new official text from the BM02 `.docx` and bump the version line above.
 
 <!-- BEGIN BM02 PROMPT -->
 You are reviewing the SRS and SDD of a software capstone project against its
