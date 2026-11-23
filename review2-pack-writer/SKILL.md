@@ -34,7 +34,7 @@ Fills the four Review 2 forms with real project data and checks them against eac
 2. **Order of work** (matches the guide's order):
    1. BM03 Record of Changes (registration changes) -> 2. Reports 1-5 consistent with it (other skills) -> 3. BM02 self-review (run via `docs-sync-auditor`; team responses) -> 4. BM01 Design Brief + Appendix A -> 5. BM04 Commitment, after the review session (within 3 working days).
 3. **Gather evidence**: features/FRs, actors, workflows and entity state paths (SRS/SDD activity and state diagrams), NFRs and measures, tests (counts by type, CI config), team members and what each owns (git log/PR authorship + user input), architecture/tech declaration.
-4. **Draft** the requested form from its template reference. Use stable IDs: `D1-D5`, `R1-R3`, `F-xx`, `NFR-xx`/`N-xx`, `WF-xx`, `DS-xxa/b`, `SR-xx`.
+4. **Draft** the requested form from its template reference. Use stable IDs: `D1-D5`, `R1-R3`, `F-01`, `NFR-01`, `WF-01`, `DS-xxa/b`, `SR-xx`.
 5. **Run the cross-checks** below on everything that exists; report each as Pass / Fail / Not verifiable with the numbers.
 6. **Naming and checklist**: print the final file names and the 7-item checklist, with status per item from what you can verify.
 
@@ -78,6 +78,12 @@ State the arithmetic when reporting X7 and X9, e.g. `15 x 3 + 5 + 12 + 4 = 66; c
 5. `..._R2_SelfReview.pdf` (BM02): raw results, run info, Team response for every finding
 6. `..._R2_DesignBrief.pdf` (BM01): sections 0-8, <= 4 pages, with Appendix A and the repo link
 7. Every member has reviewed the part they own and their main workflow
+
+## Optional scripts (Python 3; run when forms exist as Markdown tables)
+
+- `scripts/check_review2.py --bm01 BM01.md --bm02 BM02.md --bm04 BM04.md --members N` - automates X1, X2 (word estimate), X3, X5, X6, X7, X9, X13 and part of X4/X10. `check_review2.py formula --features F --workflows W --transitions T --nfrs N --committed C` prints the minimum test-case arithmetic.
+- `scripts/bm01_pages.py BM01.pdf` (or `.docx` with LibreOffice installed) - counts the pages of sections 0-8 and exits 2 when it cannot measure.
+Report the script output verbatim in the handover; checks the scripts do not cover (X8, X11, X12, X14) stay manual.
 
 ## Handover message
 
