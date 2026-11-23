@@ -9,7 +9,7 @@ Status: **partly executed** (see Results log); the cases of the other skills are
 1. Create the fixture described in `setup` (a small throwaway repo is enough) and install the skills.
 2. Start a fresh agent session in the fixture and send `prompt` unchanged.
 3. Tick every `expect` item and confirm no `must_not` item happened. Record Pass/Fail, the agent and its version, and the date.
-4. For trigger problems, compare the skill that activated with `skill`; adjust that skill's `description` (keep it <= 900 characters) and rerun the negative cases.
+4. For trigger problems, compare the skill that activated with `skill`; adjust that skill's `description` (keep it <= 650 characters, English only) and rerun the negative cases.
 
 ## Using skill-creator
 

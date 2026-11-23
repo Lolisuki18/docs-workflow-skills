@@ -1,6 +1,6 @@
 ---
 name: docs-sync-auditor
-description: Audits existing documentation (README, API docs, diagrams, SRS/SDD, User Guide) against the source code or the latest git diff, read-only by default, outputting a discrepancy table (doc_file:line vs code_file:line) with Critical/Medium/Minor severity and editing only after user confirmation. Its BM02 Standard Mode runs the course's verbatim 7-check prompt for the Review 2 self-review. Use when the user says "audit docs", "check docs against code", "docs out of date", "find mismatches", "run BM02 self-review", "kiểm tra tài liệu có lệch code không", "đối chiếu docs với code", "rà soát SRS/SDD", "chạy prompt BM02", "kiem tra tai lieu lech code". Do NOT use for writing docs (readme-writer, srs-sdd-writer), filling Review 2 forms (review2-pack-writer), or auditing code quality or security.
+description: Audits existing documentation (README, API docs, diagrams, SRS/SDD, User Guide) against the source code or the latest git diff, read-only by default. Use when the user says 'audit docs', 'check docs against code', 'docs out of date', 'find mismatches'. Do NOT use for writing docs (readme-writer, srs-sdd-writer), filling Review 2 forms (review2-pack-writer), or auditing code quality or security.
 ---
 
 # docs-sync-auditor

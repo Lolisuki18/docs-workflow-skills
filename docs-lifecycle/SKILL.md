@@ -1,6 +1,6 @@
 ---
 name: docs-lifecycle
-description: Orchestrates documentation work in 4 phases (Discovery & Routing, Evidence Gathering, Drafting, Sync & Rubric Check) and routes to the right sub-skill - repo technical docs (A), course SDLC reports Report 1-7 / Weekly / Tracking (B), docs-vs-code audit (C), course Review 2 package BM01-BM04 (D), or release and operations docs (E). Use when the user says "write the docs", "document this project", "docs workflow", "which doc should I write", "viết tài liệu cho dự án", "làm bộ tài liệu", "lập báo cáo đồ án", "chuẩn bị hồ sơ Review 2", "tài liệu nên viết gì", "viet tai lieu cho du an". Do NOT use for a single clearly scoped document when the user already names it (go straight to that skill), nor for feature code, tests or code comments.
+description: Orchestrates documentation work in 4 phases (Discovery & Routing, Evidence Gathering, Drafting, Sync & Rubric Check) and routes to the right sub-skill - repo technical docs (A), course SDLC reports (B), docs-vs-code audit (C), Review 2 package (D), release and operations docs (E). Use when the user says 'write the docs', 'document this project', 'docs workflow', 'which doc should I write'. Do NOT use for a single clearly scoped document when the user already names it (go straight to that skill), nor for feature code, tests or code comments.
 ---
 
 # docs-lifecycle
