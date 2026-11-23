@@ -85,7 +85,7 @@ IDs `DS-01`, `DS-02`...; `Type` = Main / Exception.
 Automated in CI: at least **50 %** of the committed total.
 
 ## Page-budget estimate (when no renderer is available)
-Treat as a rough estimate only and report it as such. A4, font 11, 2 cm margins: about 500 words of running text per page, but tables use roughly half that density. Practical budget for sections 0-8: <= ~1,700 words including table text, with section 2 <= 150 words. Exceeding ~1,500 words or more than ~45 table rows in sections 1-8 -> warn "likely over 4 pages". Prefer rendering to PDF (word processor or converter) and counting pages.
+Treat as a rough estimate only and report it as such. A4, font 11, 2 cm margins: about 500 words of running text per page, but tables use roughly half that density. The form is mostly dense tables, so overflow happens early. Practical budget for sections 0-8: about 1,100-1,300 words including table text, with section 2 <= 150 words. Above ~1,100 words -> warn "close to the 4-page limit"; above ~1,300 words or more than ~35 table rows in sections 1-8 -> warn "likely over 4 pages". Prefer rendering to PDF (word processor or converter) and counting pages.
 
 ## Filling notes
 - Section 6 and 7 must equal the final BM04 sections 3 and 4.

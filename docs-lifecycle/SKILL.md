@@ -74,7 +74,7 @@ Before handing over:
 
 1. **Anti-drift check.** For each factual claim in the new docs (command, path, endpoint, table, class, env var, label, number), confirm it against the source. Fix or mark `[Cần bổ sung: ...]`.
 2. **Cross-document consistency.** Names of entities, actors, features and endpoints are identical across README, diagrams, API docs, SRS/SDD and user guide.
-3. **Rubric.** If the deliverable is Report 3/4 run `srs-sdd-writer/references/evaluation-rubric.md`; Review 2 forms run the cross-checks in `review2-pack-writer`. For branch (A) use the checklist below.
+3. **Rubric.** If the deliverable is Report 3/4 ask `srs-sdd-writer` to run its rubric self-check; Review 2 forms run the cross-checks in `review2-pack-writer`. For branch (A) use the checklist below.
 4. **Handover note:** files created/changed, open `[Cần bổ sung]` items, extensions or tools the user should install (e.g. `hediet.vscode-drawio`), and anything not verified.
 
 Branch (A) checklist:
