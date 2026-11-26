@@ -31,6 +31,10 @@ Use the shared convention: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, 
 ## Workflow
 
 ### 1. Scope and inputs
+First, check that the user wants the course template (this skill is course-oriented: SEP490 / SWP490). If not, ask before drafting; offer `readme-writer` and `diagram-writer` for a lighter result.
+
+**Lite mode.** For a small single-actor project the user explicitly wants an SRS/SDD for: keep every required heading, but collapse non-applicable sections into one `Section | N/A - reason` table, and list the collapsed sections in the handover.
+
 Confirm: Report 3, Report 4, or both; iteration (which features are implemented); output format (Markdown default; tables paste-ready for Word). Locate: registration form/brief, existing Report 1-5, repo, DB script, previous version (for Record of Changes).
 
 ### 2. Evidence

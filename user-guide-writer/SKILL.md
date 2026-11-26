@@ -17,6 +17,10 @@ Writes the user-facing guide from what the interface actually contains.
 - Separate flows **by role**. Show a feature only to roles that can use it (from route guards/permissions), and say what the other roles will see (e.g. no menu item).
 - Read `references/report6-user-guide-template.md` first; keep its headings and numbering.
 
+## Guard: an end-user UI is required
+
+If the project has no end-user UI (CLI, library or API only), say so and stop; point to the usage section of `readme-writer`. The "no backend vocabulary" rule below applies to UIs only.
+
 ## Workflow
 
 1. **Scope.** Which release/iteration, which roles, language of the guide (default English as the report template; ask if Vietnamese is wanted - labels still quoted exactly as shown in the UI).
