@@ -16,6 +16,10 @@ Turns an incident into a document the team can learn from: what happened, why, a
 - Do not run commands against production. Read local files, git history and what the user pastes.
 - No secrets, tokens or personal data in the document; refer to them by name or role.
 
+## Guard: a named incident is required
+
+Proceed only with a named incident (date, system) and some impact data. A bug-fix commit is not an incident. If either is missing, decline and point to the changelog or a bug note. Ask once which incident the user means.
+
 ## Workflow
 
 1. **Scope.** Ask once: which incident (date, system), severity if the team uses levels, who reads the document (team, management, customers). Check `docs/postmortems/` for earlier reports and the numbering or naming used.

@@ -14,7 +14,8 @@ Produces diagrams whose every table, class, endpoint, actor and state exists in 
 - **Names match the source 100%**: table names, column names, class names, endpoint paths, enum values, actor names. Do not "prettify" identifiers.
 - **Source of truth = diagram-as-code in the repo** (Mermaid default; PlantUML when the repo already uses it or the user asks). Reason: Review 2 requires diagrams stored as Mermaid/PlantUML source.
 - **`.drawio` is an additional export**, produced when the user wants a drag-and-drop visual or an image for Word/PDF. When both exist, state which is canonical (the code version) and keep them in sync.
-- One diagram = one purpose. Split rather than draw a 40-node picture.
+- One diagram = one purpose. Split rather than draw a 40-node picture. One diagram per purpose; for a tiny project 1-2 diagrams are enough.
+- **Type not applicable** (e.g. an ERD with no database): do not draw it; list it as "not applicable, reason" in the handover.
 
 ## Diagram types and evidence
 
@@ -32,7 +33,7 @@ Produces diagrams whose every table, class, endpoint, actor and state exists in 
 1. Confirm type, scope (which feature/flow/entity set) and target files. Default path: `docs/diagrams/<type>-<subject>.md` (Mermaid fenced block + 1-2 sentence caption + evidence line). PlantUML: `docs/diagrams/<type>-<subject>.puml`.
 2. Gather evidence; keep a list `element -> file:line`.
 3. Draft the code diagram following `references/mermaid-conventions.md` (syntax templates, naming, layout limits, per-type patterns).
-4. Self-check (below). Render check: if a Mermaid CLI/preview is available, render it; otherwise say it was not rendered.
+4. Self-check (below). Render check: if a Mermaid CLI/preview is available, render it; otherwise run a lightweight check (brackets balanced, every node id declared, `stateDiagram-v2` / `flowchart` header present) and say clearly "not rendered".
 5. If the user wants `.drawio`: build it from the **same element list** following `references/drawio-xml-guide.md`, save to `docs/diagrams/<name>.drawio`.
 6. **Extension reminder (mandatory).** Every time you create a `.drawio` file, or when `.vscode/extensions.json` lacks `hediet.vscode-drawio`: tell the user to install **Draw.io Integration (`hediet.vscode-drawio`)** to view and edit `.drawio` inside the IDE (VS Code / Cursor / Antigravity). Offer to add it to `.vscode/extensions.json` under `recommendations`; edit the file only after the user agrees, preserving existing entries.
 7. Handover message.

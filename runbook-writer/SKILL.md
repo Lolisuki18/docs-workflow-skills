@@ -16,6 +16,10 @@ Writes the document a tired person opens at 3 a.m.: exact steps, in order, with 
 - Mark destructive or irreversible steps with a visible warning and a "verify before" line (backup exists, correct environment selected).
 - Do not claim monitoring, backups or failover exist unless a file or the user shows it.
 
+## Applicability gate
+
+Before anything else, look for a deployable or operable system: deploy files, environments, an on-call or incident process, health checks. If you find none, say so, stop, and point to the troubleshooting section of `readme-writer`. Do not write a stub with placeholders only.
+
 ## Workflow
 
 1. **Scope.** Ask once: which system and environments, who reads it (on-call developers, ops, a student team), and what is the worst realistic failure. Check for an existing `docs/runbook*` or `docs/ops/` and extend it.

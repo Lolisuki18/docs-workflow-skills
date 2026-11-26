@@ -14,7 +14,8 @@ Produces a README whose every command and variable was found in the repo or actu
 - Missing fact -> `[Cần bổ sung: <what>]`. Never "probably" or "typically".
 - No promotional wording. Describe what the project does in 1-3 plain sentences.
 - Do not name an IDE-specific tool; say "run in a terminal at the repo root".
-- Preserve valuable existing README content (badges, links, license, contact). Update, do not wipe.
+- Preserve valuable existing README content (badges, links, license, contact). Update, do not wipe. Keep existing valuable sections but move them into the template order below, and report any reordering in the handover.
+- Do not hard-code counts that rot (test counts, file counts); say "as of <date/commit>" or omit.
 
 ## Workflow
 
@@ -49,7 +50,7 @@ Use only sections that have real content, in this order:
 4. **Getting started**
    - Clone
    - Configure environment: copy `.env.example` -> `.env`; table of variables (name, purpose, required, example from the file). Never print real secrets.
-   - Install dependencies
+   - Install dependencies (stdlib-only project: write "nothing to install" only when the evidence supports it, i.e. no manifest found)
    - Database setup / migrations / seed
    - Run (dev) - exact command(s) and the URL/port found in config
    - Run with Docker (only if Dockerfile/compose exists)
