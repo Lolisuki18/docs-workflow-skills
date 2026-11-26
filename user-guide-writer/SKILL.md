@@ -19,11 +19,13 @@ Writes the user-facing guide from what the interface actually contains.
 
 ## Guard: an end-user UI is required
 
-If the project has no end-user UI (CLI, library or API only), say so and stop; point to the usage section of `readme-writer`. The "no backend vocabulary" rule below applies to UIs only.
+If the project has no end-user UI (CLI, library or API only), say so and stop; point to the usage section of `../readme-writer/`. The "no backend vocabulary" rule above applies to UIs only. If a UI control is present in markup but unwired/broken (no working handler or route), document it honestly as currently not working without inventing a success result, and note the technical cause in Handover.
 
 ## Workflow
 
-1. **Scope.** Which release/iteration, which roles, language of the guide (default English as the report template; ask if Vietnamese is wanted - labels still quoted exactly as shown in the UI).
+Start each reply with `[UserGuide X/7: <Step>]` (per `CONVENTIONS.md`).
+
+1. **Scope.** Which release/iteration, which roles, language of the guide (default English as the report template; ask if Vietnamese is wanted - labels still quoted exactly as shown in the UI). **Hard stop:** confirm target output path (e.g. `docs/user-guide.md`) and overwrite choice before writing files.
 2. **Discover the UI** (evidence list `screen -> file:line`):
    - Route table / router config -> screen list and URLs (URLs only if users must type them).
    - Navigation components -> menu structure per role.

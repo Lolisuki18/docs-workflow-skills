@@ -30,8 +30,10 @@ Use the shared convention: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, 
 
 ## Workflow
 
+Start each reply with `[SRS/SDD X/5: <Step>]` (per `CONVENTIONS.md`).
+
 ### 1. Scope and inputs
-First, check that the user wants the course template (this skill is course-oriented: SEP490 / SWP490). If not, ask before drafting; offer `readme-writer` and `diagram-writer` for a lighter result.
+First, check that the user wants the course template (this skill is course-oriented: SEP490 / SWP490). If not, ask before drafting; offer `../readme-writer/` and `../diagram-writer/` for a lighter result. **Hard stop:** confirm target files and overwrite choice before writing Report 3/4 files.
 
 **Lite mode.** For a small single-actor project the user explicitly wants an SRS/SDD for: keep every required heading, but collapse non-applicable sections into one `Section | N/A - reason` table, and list the collapsed sections in the handover.
 
@@ -41,7 +43,7 @@ Confirm: Report 3, Report 4, or both; iteration (which features are implemented)
 - Actors/roles: auth config, role enums, route guards. Use cases/features: spec, controllers, routes, services, frontend routes.
 - Entities: ORM models, migrations, SQL scripts. States: status enums + the code that changes them.
 - Screens: frontend routes/pages. Non-screen functions: schedulers, jobs, listeners, integrations.
-- API: delegate to `api-doc-writer` (summary table + details) - do not hand-write endpoints.
+- API: delegate to `../api-doc-writer/` (summary table + details) - do not hand-write endpoints (in Lite mode or when `../api-doc-writer/` is skipped/missing, summarize verified endpoints inline with `file:line`).
 - Tech: manifests, Docker/compose, CI, deploy config, third-party SDKs, AI tooling declared by the team.
 Keep an evidence list `item -> file:line`.
 

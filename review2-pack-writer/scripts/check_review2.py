@@ -119,7 +119,8 @@ def check_bm01(path, members):
             hdr = [h.lower() for h in t[0][0]]
             oi = next((i for i, h in enumerate(hdr) if h.startswith('owner')), None)
             if oi is not None:
-                empty = [r[0] for r in rows if oi >= len(r) or not r[oi].strip()]
+                is_ph = lambda v: not v.strip() or bool(re.search(r'\[(?:Cần bổ sung|Needs input|Inferred from code)\b', v, re.I))
+                empty = [r[0] for r in rows if oi >= len(r) or is_ph(r[oi])]
                 rec('X3', 'PASS' if not empty else 'FAIL', f'section 3 owners present' if not empty else f'section 3 rows without owner: {empty}')
     b7 = find_section(secs, r'^7\.\s*Non-Functional')
     if b7 is not None:
@@ -137,12 +138,13 @@ def check_bm01(path, members):
         if members: rec('X5', 'PASS' if wf_count >= members else 'FAIL', f'A1: {wf_count} workflows for {members} members (min = members)')
         hdr = [h.lower() for h in t[0][0]] if t else []
         if 'owner' in hdr:
+            is_ph = lambda v: not v.strip() or bool(re.search(r'\[(?:Cần bổ sung|Needs input|Inferred from code)\b', v, re.I))
             oi = hdr.index('owner'); owners = [r[oi].strip() for r in rows if oi < len(r)]
-            dup = {o for o in owners if owners.count(o) > 1 and o}
-            rec('X5', 'PASS' if all(owners) else 'FAIL', 'every workflow has one owner' if all(owners) else 'workflow without owner')
+            real_owners = [o for o in owners if not is_ph(o)]
+            rec('X5', 'PASS' if len(real_owners) == len(rows) and rows else 'FAIL', 'every workflow has one owner' if len(real_owners) == len(rows) and rows else 'workflow without owner')
             if members:
-                rec('X5', 'PASS' if len(set(o for o in owners if o)) >= members else 'WARN',
-                    f'{len(set(o for o in owners if o))} distinct owners for {members} members (each member should own >= 1)')
+                rec('X5', 'PASS' if len(set(real_owners)) >= members else 'WARN',
+                    f'{len(set(real_owners))} distinct owners for {members} members (each member should own >= 1)')
     a3 = find_section(secs, r'A3\.?\s*Functional Test Case')
     if a3 is not None:
         t = tables(a3)
@@ -181,7 +183,8 @@ def check_bm02(path, bm01_text):
     if not t: rec('X1', 'FAIL', 'BM02 section 3 has no table'); return
     hdr = [h.lower() for h in t[0][0]]; rows = data_rows(t[0][1])
     si, ri = hdr.index('severity'), next(i for i, h in enumerate(hdr) if h.startswith('team response'))
-    no_resp = [r[0] for r in rows if not r[ri].strip()]
+    is_ph = lambda v: not v.strip() or bool(re.search(r'\[(?:Cần bổ sung|Needs input|Inferred from code)\b', v, re.I))
+    no_resp = [r[0] for r in rows if is_ph(r[ri])]
     rec('X13', 'PASS' if not no_resp else 'FAIL', 'every finding has a Team response' if not no_resp else f'findings without Team response: {no_resp}')
     need = [r[0] for r in rows if r[si].strip().lower() == 'high' and re.match(r'(kept|planned)', r[ri].strip(), re.I)]
     bm01 = split_sections(bm01_text); s5 = find_section(bm01, r'^5\.\s*Known Gaps') or ''
@@ -238,7 +241,8 @@ def check_bm04(path):
         if t:
             hdr = [h.lower() for h in t[0][0]]; ai = next((i for i, h in enumerate(hdr) if h.startswith('agreed')), None)
             if ai is not None:
-                empty = [r[0] for r in t[0][1] if r and ai < len(r) and not r[ai].strip()]
+                is_ph = lambda v: not v.strip() or bool(re.search(r'\[(?:Cần bổ sung|Needs input|Inferred from code)\b', v, re.I))
+                empty = [r[0] for r in t[0][1] if r and ai < len(r) and is_ph(r[ai])]
                 rec('X10', 'PASS' if not empty else 'WARN', 'agreed thresholds filled (verify they are not below the minimums)' if not empty else f'agreed threshold empty for: {empty}')
 
 # ---------------------------------------------------------------- main
