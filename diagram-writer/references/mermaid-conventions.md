@@ -23,7 +23,7 @@ Evidence: `path/File.java`, `db/migrations/001_init.sql`
 ## 2. Global conventions
 
 - Identifiers verbatim from code. Display labels may add spaces only inside quoted labels; the id stays original.
-- Avoid characters that break Mermaid: wrap labels containing `()`, `:`, `/`, `#`, `;` in double quotes; use `<br/>` for line breaks; no raw `<` `>` outside quotes.
+- Avoid characters that break Mermaid: in flowchart/architecture/ERD node and edge labels, wrap labels containing `()`, `:`, `/`, `#`, `;` in double quotes; in `sequenceDiagram` messages, avoid quoting and replace `;` with `,`; use `<br/>` for line breaks; no raw `<` `>` outside quotes.
 - Size limits: sequence <= 6 participants and ~20 messages; flowchart/activity <= ~15 nodes; ERD <= ~12 entities (split by module otherwise).
 - Direction: `TD` for processes, `LR` for architecture/pipelines.
 - One comment line `%% Evidence: <files>` at top is allowed and encouraged.

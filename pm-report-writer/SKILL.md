@@ -32,6 +32,8 @@ Report 7 aggregates Reports 1-6; read its template and then the current source o
 
 ## Workflow
 
+Start each reply with `[PM Report X/5: <Step>]` (per `CONVENTIONS.md`). **Hard stop:** confirm target path and overwrite choice before writing `.csv`/`.docx`/`.xlsx` files.
+
 1. **Scope.** Which report, which iteration/week, output format: Markdown tables (default), CSV, or section text for Word. Ask for team/project info the repo cannot provide (member names, roles, supervisor) or mark as `[Cần bổ sung]`.
 2. **Evidence by report**
 

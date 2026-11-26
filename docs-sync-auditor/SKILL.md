@@ -26,8 +26,10 @@ If the user's request does not say which, ask one question.
 
 ## Default Audit workflow
 
+Start each reply with `[Docs Audit X/6: <Step>]` (or `[BM02 Audit X/6: <Step>]` in BM02 mode).
+
 ### 1. Scope
-Confirm: which docs (README, API docs, diagrams, SRS/SDD, User Guide, ADRs, tracking), which code (whole repo, a module, or `git diff <base>..HEAD` / last N commits). If a diff is given, start from changed files and trace to the docs that mention them.
+Confirm: which docs (README, API docs, diagrams, SRS/SDD, User Guide, ADRs, CHANGELOG, tracking), which code (whole repo, a module, or `git diff <base>..HEAD` / last N commits). If the user already specified scope, proceed directly to Step 2. If a diff is given, start from changed files and trace to the docs that mention them.
 
 ### 2. Build the claim list
 Extract verifiable claims from each doc, with `file:line`:
@@ -41,6 +43,7 @@ Extract verifiable claims from each doc, with `file:line`:
 | SDD | packages, tables, class/sequence participants, tech declarations |
 | User Guide | screen names, menu/button labels, routes, role permissions |
 | ADR | decision still reflected in manifests/config |
+| CHANGELOG / notes | version/tag, commit SHAs, test counts/commands (note snapshot date vs HEAD) |
 
 ### 3. Verify against code
 For each claim find the source (grep, read, parse manifests, read migrations). Classify: **Match**, **Mismatch**, **Missing in docs** (code feature undocumented), **Missing in code** (documented, not found), **Not verifiable**.

@@ -22,6 +22,8 @@ Proceed only with a named incident (date, system) and some impact data. A bug-fi
 
 ## Workflow
 
+Start each reply with `[Postmortem X/8: <Step>]` (per `CONVENTIONS.md`).
+
 1. **Scope.** Ask once: which incident (date, system), severity if the team uses levels, who reads the document (team, management, customers). Check `docs/postmortems/` for earlier reports and the numbering or naming used.
 2. **Collect evidence.** What the user supplies plus what the repo shows: `git log` and tags around the incident, deploy and CI workflow history, config changes, migration files, application logs and alerts provided. List what you could not get (monitoring graphs, chat history, customer reports).
 3. **Build the timeline.** One row per event, in order, in a single time zone stated in the header: `time | event | source`. Mark detection, escalation, mitigation and resolution. Gaps in time are written as gaps.
@@ -29,7 +31,7 @@ Proceed only with a named incident (date, system) and some impact data. A bug-fi
 5. **Impact.** Users or requests affected, duration, data loss or corruption, money; each with its source or `[Cần bổ sung]`.
 6. **What went well / badly / where we got lucky.** Short bullet lists, factual.
 7. **Action items.** Each: the change, type (prevent, detect, mitigate, process), owner `[Cần bổ sung: owner]`, due date `[Cần bổ sung]`, and the link to a ticket only if the user gives one. Prefer few, specific, verifiable items over a long wish list. Offer to hand code fixes to `bug-investigator` and monitoring or pipeline gaps to `ci-cd-setup` or `runbook-writer`.
-8. **Write** `docs/postmortems/YYYY-MM-DD-short-title.md` using `references/postmortem-template.md`, then self-check.
+8. **Write** (**Hard stop:** confirm filename/overwrite and draft approval before writing) `docs/postmortems/YYYY-MM-DD-short-title.md` using `references/postmortem-template.md`, then self-check.
 
 ## Self-check
 

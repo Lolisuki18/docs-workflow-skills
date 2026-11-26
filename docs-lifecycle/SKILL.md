@@ -10,7 +10,7 @@ Conductor for the documentation skill set. It decides *what* to write, gathers *
 ## Global rules (apply to every phase and every sub-skill)
 
 1. **Code-first.** Read real code, config, DB schema, git log or supplied input documents before writing. Never invent endpoints, run commands, environment variables, UI labels, entity names or progress numbers.
-2. **Mark gaps, do not fill them.** Missing data becomes `[Cần bổ sung: <what is missing and where to find it>]`.
+2. **Mark gaps, do not fill them.** Missing data becomes `[Needs input: <what is missing and where to find it>]` (English) or `[Cần bổ sung: <what is missing and where to find it>]` (Vietnamese).
 3. **No marketing tone.** No "powerful", "seamless", "tối ưu vượt trội". State facts: what it does, how to run it, what it depends on.
 4. **Agent-agnostic.** Describe actions ("search the repo", "read the file", "run the command"), not a specific IDE's tool names.
 5. **Language.** Follow the user's language for prose. Keep identifiers, commands and code in their original form. SDLC reports follow the template language (English) unless the user says otherwise.
@@ -39,7 +39,7 @@ Start **every** response with `[Docs Phase X/4: <Phase name>]`, e.g. `[Docs Phas
    Branches **B** and **D** are built on the SEP490 / SWP490 course templates. If the user has no course context (a company or open-source project), offer only A, C and E, and say B and D do not apply.
    A request may span branches; split it into ordered steps.
    If the user without course context asks for a branch B/D skill: for an SRS/SDD the user explicitly wants, or a user guide for a project with a real UI, run it; for course-only skills (Report 1/2/5/7, Weekly, Tracking, Review 2 forms) say they are course-oriented and ask. Never skip silently.
-   **Small scope.** For a project under ~500 lines of code or with one actor, keep the Phase 1 file list minimal and run a skill only when it applies; list the others as skipped.
+   **Small scope.** For a project or scoped module under ~500 lines of code or with one actor, keep the Phase 1 file list minimal and run a skill only when it applies; list the others as skipped. If `README.md` or `docs/_evidence.md` already belongs to another module, propose `<module>/README.md` (with an optional root index link) and `docs/_evidence-<module>.md` (or a module section) at the HARD STOP.
 3. Report what exists, what is missing, and what looks stale (dates, git log vs doc mtime) - facts only.
 4. **HARD STOP.** Present: chosen branch(es), target sub-skill per deliverable, exact list of files to create or modify (with paths), and open questions. Do not continue until the user confirms.
 
