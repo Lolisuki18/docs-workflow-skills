@@ -26,7 +26,10 @@ Turns real server code into an accurate API specification. If the code does not 
 | ASP.NET | `[ApiController]`, `[Route]`, minimal API `MapGet/MapPost` |
 | Django/DRF/FastAPI/Flask | `urls.py`, viewsets, routers, `@app.get` |
 | Go/Rust/PHP | handler registration (`mux.Handle`, `Router`, `Route::`) |
+| CLI only (`argparse`, `click`, `cobra`) | not a network API: see the exit below |
 | Existing spec | `openapi.*`, `swagger.*` - treat as a claim to verify, not as truth |
+
+**No network API found.** If no router, controller or handler registration exists, say so and stop; point to `readme-writer` for a CLI or library reference. Do not write an empty spec.
 
 Resolve **full paths** (global prefix + controller prefix + method path + version).
 

@@ -14,6 +14,9 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 - `LICENSE` (MIT).
 
 ### Changed
+- Skills tuned after agents ran them on a tiny Python CLI: `docs-lifecycle` gains a "Small scope" rule, a skipped-skills line in the handover, guidance for branch B/D requests without course context, mandated-files wording, line-reference and git-ignored-source rules.
+- `runbook-writer`, `postmortem-writer`, `api-doc-writer` and `user-guide-writer` now stop early (and point to `readme-writer` or the changelog) when there is no operable system, no named incident, no network API or no end-user UI.
+- `srs-sdd-writer` checks that the user wants the course template and has a "Lite mode"; `adr-writer` handles implied alternatives, scope updates and dates; `diagram-writer` has a "type not applicable" outcome, a lightweight check without a renderer and a proportionality rule; `readme-writer` and `changelog-release-notes-writer` cover rotting counts, section reordering, stdlib-only projects, unmerged branches and untagged versions.
 - Skill descriptions are English only and shorter (4 trigger phrases, at most 650 characters) to cut the context every installed skill costs. The trigger evals keep their Vietnamese prompts to check that matching still works.
 - `docs-lifecycle` offers branches A, C and E only when there is no course context (B and D are built on the SEP490 / SWP490 templates).
 - `scripts/validate.py` is now the shared validator from `ai-workflow-suite` (allows `evals/`, checks `../<skill>/` links).
