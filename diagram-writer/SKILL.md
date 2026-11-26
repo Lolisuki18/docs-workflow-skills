@@ -30,10 +30,12 @@ Produces diagrams whose every table, class, endpoint, actor and state exists in 
 
 ## Workflow
 
-1. Confirm type, scope (which feature/flow/entity set) and target files. Default path: `docs/diagrams/<type>-<subject>.md` (Mermaid fenced block + 1-2 sentence caption + evidence line). PlantUML: `docs/diagrams/<type>-<subject>.puml`.
+Start each reply with `[Diagram X/7: <Step>]` (per `CONVENTIONS.md`).
+
+1. Confirm type, scope (which feature/flow/entity set) and target files (**Hard stop:** wait for explicit approval before writing files to `docs/diagrams/` unless the user asked for an inline draft). Default path: `docs/diagrams/<type>-<subject>.md` (Mermaid fenced block + 1-2 sentence caption + evidence line). PlantUML: `docs/diagrams/<type>-<subject>.puml`.
 2. Gather evidence; keep a list `element -> file:line`.
 3. Draft the code diagram following `references/mermaid-conventions.md` (syntax templates, naming, layout limits, per-type patterns).
-4. Self-check (below). Render check: if a Mermaid CLI/preview is available, render it; otherwise run a lightweight check (brackets balanced, every node id declared, `stateDiagram-v2` / `flowchart` header present) and say clearly "not rendered".
+4. Self-check (below). Render check: if a Mermaid CLI/preview is available, render it; otherwise run a lightweight check (brackets balanced, every node id declared, `sequenceDiagram` / `erDiagram` / `stateDiagram-v2` / `flowchart` header present) and say clearly "not rendered".
 5. If the user wants `.drawio`: build it from the **same element list** following `references/drawio-xml-guide.md`, save to `docs/diagrams/<name>.drawio`.
 6. **Extension reminder (mandatory).** Every time you create a `.drawio` file, or when `.vscode/extensions.json` lacks `hediet.vscode-drawio`: tell the user to install **Draw.io Integration (`hediet.vscode-drawio`)** to view and edit `.drawio` inside the IDE (VS Code / Cursor / Antigravity). Offer to add it to `.vscode/extensions.json` under `recommendations`; edit the file only after the user agrees, preserving existing entries.
 7. Handover message.

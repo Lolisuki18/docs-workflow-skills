@@ -17,10 +17,12 @@ Records one architectural decision per file so the team can later see what was d
 
 ## Workflow
 
+Start each reply with `[ADR X/6: <Step>]` (per `CONVENTIONS.md`).
+
 1. **Scope the decision.** Ask (once) if unclear: what is decided, who decided, when (ask for both the plan date and the decision date; otherwise use the commit date and say which), status (Proposed / Accepted / Deprecated / Superseded by NNN).
-2. **Gather evidence.** Where the decision shows up: dependency manifests, config files, infrastructure files, module layout, migration history, `git log -S`/`git log --follow` around the introducing commit, PR text or issue links if available. Record sources.
-3. **Check existing ADRs.** List `docs/adr/`; use the next number `NNN` (3 digits, no gaps reuse). If the folder has a different convention (e.g. `0001-`), follow it. Look for overlap or contradiction and link related ADRs.
-4. **Write** `docs/adr/NNN-ten-quyet-dinh.md` (kebab-case, ASCII, no diacritics, max ~6 words).
+2. **Gather evidence.** Where the decision shows up: dependency manifests, config files, infrastructure files, module layout, migration history, `git log -S`/`git log --follow` around the introducing commit, PR text or issue links if available. Record sources (`file:line`).
+3. **Check existing ADRs.** List `docs/adr/`; use the next number `NNN` (3 digits, no gaps reuse). If the folder has a different convention (e.g. `0001-`), follow it. Look for overlap or contradiction and link related ADRs. **Hard stop:** confirm `NNN`, title, status, and target file writes (`approved`, `ok proceed`) before creating `docs/adr/NNN-*.md` or updating `docs/adr/README.md`.
+4. **Write** `docs/adr/NNN-<short-decision-title>.md` (kebab-case, ASCII, no diacritics, max ~6 words).
 5. **Update the index** `docs/adr/README.md` (table: `NNN | Title | Status | Date`). Create it if missing.
 6. **Self-check** and hand over.
 
