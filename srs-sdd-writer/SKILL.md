@@ -20,13 +20,13 @@ Produces Report 3 (SRS) and Report 4 (SDD) that follow the course template struc
 
 Use the shared convention: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, `WF-01`. The template shows `01`, `02` for use cases; this skill set writes `UC01`, `UC02` and uses them in every table and diagram.
 
-## Required references (read before drafting)
+## References (read each at the step shown, only for the report requested)
 
-| Task | Read |
-|---|---|
-| Report 3 | `references/report3-srs-template.md` |
-| Report 4 | `references/report4-sdd-template.md` |
-| Final check | `references/evaluation-rubric.md` |
+| Task | Read | When |
+|---|---|---|
+| Report 3 | `references/report3-srs-template.md` | before drafting Report 3 (step 3) |
+| Report 4 | `references/report4-sdd-template.md` | before drafting Report 4 (step 4) |
+| Final check | `references/evaluation-rubric.md` | at step 5, after the draft |
 
 ## Workflow
 
@@ -73,7 +73,7 @@ Template order, plus the mandatory Review 2 content:
 ### 5. Self-check (mandatory at the end of every draft)
 Run `references/evaluation-rubric.md` and append a short **Rubric result** to the handover (not inside the report): each check Pass / Fail / Not verifiable with evidence, and the open `[Cần bổ sung]` list. Fix failures before handing over when evidence is available.
 
-Examples of good and bad requirement text, traceability rows and rubric results: `references/examples.md`.
+Examples of good and bad requirement text, traceability rows and rubric results: `references/examples.md` (read only if unsure how to phrase a requirement or a rubric result).
 
 ## Cross-skill coordination
 
