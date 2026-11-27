@@ -22,9 +22,9 @@ Before anything else, look for a deployable or operable system: deploy files, en
 
 ## Workflow
 
-Start each reply with `[Runbook X/7: <Step>]` (per `CONVENTIONS.md`).
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[Runbook X/7: <Step>]`.
 
-1. **Scope.** Ask once: which system and environments, who reads it (on-call developers, ops, a student team), and what is the worst realistic failure. Check for an existing `docs/[<module>/]runbook*` or `docs/ops/` and ask whether to extend or overwrite (**Hard stop** before writing files).
+1. **Scope.** Ask once: which system and environments, who reads it (on-call developers, ops, a student team), and what is the worst realistic failure. Check for an existing `docs/<module>/runbook*` or `docs/ops/` (single-module repos omit `<module>/`) and ask whether to extend or overwrite (**Hard stop** before writing files (skip when docs-lifecycle Phase 1 already approved this path)).
 2. **Gather evidence** (record `file:line` or source of each fact): Dockerfiles and compose, CI/CD workflows, deploy scripts, infrastructure files (Terraform, Helm, Kubernetes manifests), `.env.example`, health endpoints, logging and metrics config, migration tooling, backup scripts, cron or scheduled jobs.
 3. **Build the system sheet:** components and what each does, dependencies (database, queue, third-party APIs), ports, health checks, where logs and metrics are, configuration and secret names, and who owns each (placeholders when unknown).
 4. **Write the procedures** using `references/runbook-template.md`:

@@ -19,7 +19,7 @@ Produces a README whose every command and variable was found in the repo or actu
 
 ## Workflow
 
-Start each reply with `[README X/4: <Step>]` (per `CONVENTIONS.md`). **Hard stop:** if `README.md` already exists, present the proposed outline/diff and wait for explicit approval (`approved`, `ok proceed`, `duyệt`) before overwriting.
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[README X/4: <Step>]`. **Hard stop:** if `README.md` already exists, present the proposed outline/diff and wait for explicit approval (`approved`, `ok proceed`, `duyệt`) before overwriting; this approves content, so it applies even after docs-lifecycle Phase 1 approved the path. In a multi-module repo write `<module>/README.md` (single-module: `README.md`).
 
 ### 1. Detect the stack (read, do not assume)
 

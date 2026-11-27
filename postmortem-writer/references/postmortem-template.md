@@ -1,13 +1,13 @@
 # Postmortem template
 
-Save as `docs/postmortems/YYYY-MM-DD-short-title.md`.
+Save as `docs/<module>/postmortems/YYYY-MM-DD-short-title.md` (single-module repos omit `<module>/`). Gap placeholder: `[Needs input]` in English documents, `[Cần bổ sung]` in Vietnamese ones (follow the reply language).
 
 ```markdown
 # Postmortem: <short title>
 
-- **Date of incident:** YYYY-MM-DD, <start> to <end> (<time zone>) [Cần bổ sung if unknown]
+- **Date of incident:** YYYY-MM-DD, <start> to <end> (<time zone>) [Needs input if unknown]
 - **Status:** Draft | Reviewed
-- **Severity:** <level used by the team, or [Cần bổ sung]>
+- **Severity:** <level used by the team, or [Needs input]>
 - **Authors:** <roles or names given by the user>
 - **Systems involved:** <services, jobs, databases>
 
@@ -52,7 +52,7 @@ How it was detected, how long that took, what slowed the response.
 ## Action items
 | # | Action | Type (prevent / detect / mitigate / process) | Owner | Due | How we verify it |
 |---|---|---|---|---|---|
-| 1 | | | [Cần bổ sung] | [Cần bổ sung] | |
+| 1 | | | [Needs input] | [Needs input] | |
 
 ## Open questions
 - Evidence we could not get: ...

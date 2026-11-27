@@ -32,7 +32,7 @@ Fills the four Review 2 forms with real project data and checks them against eac
 
 ## Workflow
 
-Start each reply with `[Review2 X/6: <Step>]` (per `CONVENTIONS.md`). **Hard stop:** confirm project metadata, target draft folder, and overwrite choices before writing form files.
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[Review2 X/6: <Step>]`. **Hard stop:** confirm project metadata, target draft folder, and overwrite choices before writing form files (folder and overwrite are skipped when docs-lifecycle Phase 1 already approved the path; metadata still needs confirmation).
 
 1. **Preconditions** (ask or verify): repo has tag `review-2` (or the user names the commit); SRS/SDD contain the four diagram types and the technology declaration; the proposed final registration form exists. If not, route to `docs-lifecycle` branches A/B first, or note the gap.
 2. **Order of work** (matches the guide's order):
