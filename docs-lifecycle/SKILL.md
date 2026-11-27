@@ -30,7 +30,7 @@ Start **every** response with `[Docs Phase X/4: <Phase name>]`, e.g. `[Docs Phas
 ## Phase 1 - Discovery & Routing
 
 1. Scan the repo: top-level layout, `docs/`, existing `README*`, `docs/adr/`, diagram files (`*.md` with mermaid, `*.puml`, `*.drawio`), manifests (`package.json`, `pom.xml`, `*.csproj`, `pyproject.toml`, `go.mod`), `Dockerfile`, `.env.example`, CI config, test dirs.
-2. Classify the request using `references/doc-routing-map.md`:
+2. Classify the request using `references/doc-routing-map.md` (branches A, C, E); read `references/doc-routing-map-course.md` when the project has course context or the request names a Report 1-7, SRS/SDD, Weekly Report, Project Tracking, user guide package or Review 2 / BM01-BM04 (not otherwise):
    - **(A)** Repo technical docs - README, diagrams, API docs, ADRs.
    - **(B)** SDLC project reports - Report 1-7, Weekly Report, Project Tracking.
    - **(C)** Docs-vs-code sync audit.
@@ -83,7 +83,7 @@ Delegate to the sub-skill matched in Phase 1:
 | Runbook, ops guide, incident playbooks | `runbook-writer` |
 | Postmortem, post-incident review | `postmortem-writer` |
 
-Pass the evidence list and the confirmed file list to the sub-skill. Do not draft inline what a sub-skill owns.
+Pass the evidence list and the confirmed file list to the sub-skill. Do not draft inline what a sub-skill owns. The sub-skill reads its own references at the step that names them; do not read them in advance, and do not re-read a file already read in this conversation.
 
 ## Phase 4 - Sync & Rubric Check
 

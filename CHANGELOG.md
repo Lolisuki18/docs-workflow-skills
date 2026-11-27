@@ -2,9 +2,12 @@
 
 Format: newest first. Skills are prompts, so "breaking" means a change in behavior an agent will notice (labels, hard stops, script flags).
 
-## Unreleased (next: 0.2.0)
+## [Unreleased]
+
+## [1.0.0] - 2026-11-27
 
 ### Added
+- Shared `scripts/run-evals.py` (copy of the canonical file in `ai-workflow-suite`; `turns:` multi-turn convention, `--dry-run`).
 - Eval cases `postmortem-01` (no incident named: declines, writes no file) and `postmortem-02` (explicit timeline: only supplied facts, gaps marked).
 - `docs-lifecycle`: an existing flat evidence file is migrated to the module folder only after asking once.
 - Skills: `changelog-release-notes-writer`, `runbook-writer` and `postmortem-writer` (blameless review; one smoke run, see `evals/README.md`); `docs-lifecycle` branch E (release and operations docs).
@@ -16,6 +19,7 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 - `LICENSE` (MIT).
 
 ### Changed
+- References now load on demand per step: course branches B and D moved to `docs-lifecycle/references/doc-routing-map-course.md` (read only for course context); `srs-sdd-writer` and `review2-pack-writer` templates load after the first hard stop; `pm-report-writer` reads its template when it drafts. Measured (tokens = bytes / 3.8), eager: `srs-sdd-writer` 4,642 -> 1,915 (-59%), `review2-pack-writer` 6,050 -> 2,489 (-59%), `pm-report-writer` 2,770 -> 1,642 (-41%), `docs-lifecycle` 4,191 -> 3,943 (-6%); path A, C, E (9 skills) 16,818 -> 16,570 (-1.5%).
 - Real-run fixes: `readme-writer` keeps an existing README's section order and adds only missing sections (reorder only on request); `api-doc-writer` documents and flags runtime deviations and verifies endpoints with real requests; `runbook-writer` runs every Confirm step before writing it (else `not run`) and checks cwd-relative paths, duplicate listeners and blind health checks; `docs-lifecycle` lists `_evidence.md` in the Phase 1 file list and says to copy untracked plan requirement ids into docs.
 - Evals: `adr-01` and `ug-01` gain an approval turn, `ug-01` scopes the vocabulary ban to end-user instructions, and the evals README status matches the results log.
 - Skills tuned after agents ran them on a tiny Python CLI: `docs-lifecycle` gains a "Small scope" rule, a skipped-skills line in the handover, guidance for branch B/D requests without course context, mandated-files wording, line-reference and git-ignored-source rules.

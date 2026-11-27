@@ -79,7 +79,7 @@ docs-workflow-skills/
 ├── scripts/validate.py          structure checks for all skills (also run by CI)
 ├── evals/                       behavioural test cases (evals.json + how to run)
 ├── .github/workflows/validate.yml
-├── docs-lifecycle/        SKILL.md + references/doc-routing-map.md
+├── docs-lifecycle/        SKILL.md + references/doc-routing-map.md, doc-routing-map-course.md
 ├── readme-writer/         SKILL.md + references/examples.md
 ├── diagram-writer/        SKILL.md + references/{mermaid-conventions,drawio-xml-guide,examples}.md
 │                          + scripts/{drawio_gen,erd_vs_sql}.py
@@ -96,6 +96,40 @@ docs-workflow-skills/
 └── review2-pack-writer/   SKILL.md + references/{bm01..bm04 templates, review2-guide-summary}.md
                            + scripts/{check_review2,bm01_pages}.py
 ```
+
+## What a run looks like
+
+These excerpts come from a test run on a sample app (`Test-skill`, a small habit tracker plus two other toy modules), not from a production project. Excerpt of `docs/habitly/adr/001-localstorage-for-persistence.md`, written by `adr-writer` from the sample habit tracker's code (header and the start of the decision). Facts the repo could not show are left as `[Needs input]` instead of being invented:
+
+Source: `Test-skill/docs/habitly/adr/001-localstorage-for-persistence.md`, quoted verbatim.
+
+````markdown
+# 001. Keep habit data in the browser's localStorage under one key
+
+- **Status:** Accepted
+- **Date:** 2026-11-27 (commit `8ec8923`; `[Needs input: decision date - not recorded]`)
+- **Deciders:** `[Needs input: deciders - not recorded]`
+- **Related:** [003](003-json-export-import-backup.md), [Architecture diagram](../diagrams/architecture-habitly.md)
+## Decision
+
+We keep all habit data in `localStorage` as one JSON value under `habitly.v1`, with a version field inside the value (`version: 1`, `habitly/src/domain/habits.js:6`). It applies to the web page in `habitly/` only.
+
+Handling of bad storage, as implemented:
+- Unparseable or invalid stored data is copied to `habitly.v1.corrupt`, the app starts empty and shows a notice (`habitly/src/storage.js:30-37`). The next change then saves over `habitly.v1`; the copy under the corrupt key is not removed by the app.
+- If reading throws, the app starts empty and says changes will not be saved (`habitly/src/storage.js:22-27`). This includes the case where reading the `localStorage` property itself throws: `getStore()` returns `null` instead (`habitly/src/storage.js:8-14`, `habitly/src/ui/app.js:13`).
+- If writing fails, the app shows a message that changes will be lost on reload (`habitly/src/ui/app.js:25`).
+````
+
+## Install as a Claude Code plugin
+
+After the repos are published, the marketplace lives in `ai-workflow-suite`:
+
+```bash
+claude plugin marketplace add Lolisuki18/ai-workflow-suite
+claude plugin install docs-workflow-skills@lolisuki18-skills
+```
+
+The manifest (`.claude-plugin/plugin.json`) has **not** been checked with `claude plugin validate` yet. Plugin skills are namespaced by the plugin name. The script install below does not need any of this.
 
 ## One-command install
 

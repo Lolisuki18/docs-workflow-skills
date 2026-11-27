@@ -1,6 +1,6 @@
 {
   "name": "docs-workflow-skills",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Thirteen agent skills for documentation written from real code: README, diagrams, API docs, ADRs, changelog, runbook, postmortem, SDLC reports and the Review 2 package.",
   "author": {
     "name": "Lolisuki18",
