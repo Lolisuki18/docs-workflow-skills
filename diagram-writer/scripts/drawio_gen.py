@@ -163,10 +163,12 @@ def build(spec):
             ux, uy, uw, uh = place[u]
             vx, vy, vw, vh = place[v]
             if horiz:
-                lane_y = snap(max(uy + uh, max(place[n][1] + place[n][3] for n in place if layer[u] < layer[n] < layer[v])) + 30)
+                between = [place[n][1] + place[n][3] for n in place if layer[u] < layer[n] < layer[v]]  # empty when the skipped layers hold no nodes
+                lane_y = snap(max([uy + uh, *between]) + 30)
                 pts = f'<Array as="points"><mxPoint x="{snap(ux + uw + 30)}" y="{lane_y}"/><mxPoint x="{snap(vx - 30)}" y="{lane_y}"/></Array>'
             else:
-                lane_x = snap(max(ux + uw, max(place[n][0] + place[n][2] for n in place if layer[u] < layer[n] < layer[v])) + 30)
+                between = [place[n][0] + place[n][2] for n in place if layer[u] < layer[n] < layer[v]]
+                lane_x = snap(max([ux + uw, *between]) + 30)
                 pts = f'<Array as="points"><mxPoint x="{lane_x}" y="{snap(uy + uh + 30)}"/><mxPoint x="{lane_x}" y="{snap(vy - 30)}"/></Array>'
         cells.append(f'<mxCell id="e{k + 1}" value="{lab}" style="edgeStyle=orthogonalEdgeStyle;rounded=1;jettySize=auto;html=1;'
                      f'endArrow=classic;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontSize=11;fontColor=#1e293b;'

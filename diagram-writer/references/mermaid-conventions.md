@@ -4,7 +4,7 @@ Diagram-as-code is the canonical source. Mermaid by default; PlantUML when the r
 
 ## 1. File layout & Report Standards (UML / IEEE 830 & 1016)
 
-- Mermaid: `docs/[<module>/]diagrams/<type>-<subject>.md`, content layout:
+- Mermaid: `docs/<module>/diagrams/<type>-<subject>.md`, content layout:
 
 ````text
 # <Title>
