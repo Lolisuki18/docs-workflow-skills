@@ -169,7 +169,8 @@ def check_bm01(path, members):
         if 'type' in hdr and 'workflow' in hdr:
             ti, wi = hdr.index('type'), hdr.index('workflow'); by = {}
             for r in rows:
-                by.setdefault(r[wi].strip(), set()).add(r[ti].strip().lower())
+                if wi < len(r) and ti < len(r):
+                    by.setdefault(r[wi].strip(), set()).add(r[ti].strip().lower())
             bad = [w for w, ty in by.items() if not ({'main'} <= ty and any(x.startswith('exc') for x in ty))]
             rec('X6', 'PASS' if not bad and len(by) >= wf_count else 'FAIL',
                 f'demo scenarios cover {len(by)}/{wf_count} workflows; missing main or exception: {bad or "none"}')
@@ -182,7 +183,10 @@ def check_bm02(path, bm01_text):
     t = tables(b3)
     if not t: rec('X1', 'FAIL', 'BM02 section 3 has no table'); return
     hdr = [h.lower() for h in t[0][0]]; rows = data_rows(t[0][1])
-    si, ri = hdr.index('severity'), next(i for i, h in enumerate(hdr) if h.startswith('team response'))
+    si = hdr.index('severity') if 'severity' in hdr else None
+    ri = next((i for i, h in enumerate(hdr) if h.startswith('team response')), None)
+    if si is None or ri is None:
+        rec('X1', 'FAIL', 'BM02 section 3 table missing Severity or Team response column'); return
     is_ph = lambda v: not v.strip() or bool(re.search(r'\[(?:Cần bổ sung|Needs input|Inferred from code)\b', v, re.I))
     no_resp = [r[0] for r in rows if is_ph(r[ri])]
     rec('X13', 'PASS' if not no_resp else 'FAIL', 'every finding has a Team response' if not no_resp else f'findings without Team response: {no_resp}')
@@ -209,7 +213,10 @@ def check_bm04(path):
     b81 = find_section(secs, r'^8\.1'); b82 = find_section(secs, r'^8\.2'); b83 = find_section(secs, r'^8\.3'); b84 = find_section(secs, r'^8\.4')
     if None in (b81, b82, b83):
         rec('X9', 'FAIL', 'BM04 sections 8.1-8.3 not all found'); return
-    t81, t82, t83 = tables(b81)[0], tables(b82)[0], tables(b83)[0]
+    ts81, ts82, ts83 = tables(b81), tables(b82), tables(b83)
+    if not (ts81 and ts82 and ts83):
+        rec('X9', 'FAIL', 'BM04 sections 8.1-8.3 missing tables'); return
+    t81, t82, t83 = ts81[0], ts82[0], ts83[0]
     r81, r82 = total_row(t81[1]), total_row(t82[1])
     h81 = [h.lower() for h in t81[0]]; h82 = [h.lower() for h in t82[0]]
     c83 = {r[0].lower(): r[1] for r in t83[1] if len(r) > 1}
