@@ -24,6 +24,7 @@ Start each reply with `[API Doc X/5: <Step>]` (per `CONVENTIONS.md`).
 | Stack hint | Where endpoints live |
 |---|---|
 | Express/Fastify/Koa/Nest | route files, `@Controller`/`@Get` decorators, `app.use` mounts (resolve prefixes!) |
+| Next.js App Router / Pages | `app/**/route.ts` (`GET`/`POST` exports, `[id]` dynamic segments, omit `(group)` folders) and `pages/api/**`; exclude `"use server"` Server Actions unless the user asks for internal UI mutations |
 | Spring | `@RestController`, `@RequestMapping` (class + method prefix), `@ControllerAdvice` |
 | ASP.NET | `[ApiController]`, `[Route]`, minimal API `MapGet/MapPost` |
 | Django/DRF/FastAPI/Flask | `urls.py`, viewsets, routers, `@app.get` |
