@@ -31,12 +31,13 @@ Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each 
    - Routine: deploy, rollback, scale, rotate a secret, run a migration, restart a component, restore from backup.
    - Incident playbooks by **symptom** (site down, high error rate, slow responses, queue backlog, disk full, certificate expiry, database unreachable), each with: how to confirm, likely causes seen in the code or config, steps in order, how to verify recovery, when to escalate.
 5. **Add the contact and escalation table** with placeholders, a severity guide only if the project has one, and a post-incident checklist (timeline, cause, follow-ups).
-6. **Test what can be tested.** Run read-only or local versions of commands (`docker compose config`, `--dry-run`, lint). Report which steps were verified and which were not.
+6. **Test what can be tested.** Reproduce each Confirm/verify step by running it (locally, never against shared systems) before writing it; a step that was not run is marked `not run` in the document. Run read-only or local versions of other commands (`docker compose config`, `--dry-run`, lint). Check operational facts and note failures as risks: default paths relative to the working directory (wrong cwd silently creates a new empty store), two servers able to listen on one port (Windows), a health endpoint that stays `ok` on a wrong or missing database. Report which steps were verified and which were not.
 7. **Self-check** and hand over.
 
 ## Self-check
 
 - [ ] Each step is one action with an expected result and a way to verify it
+- [ ] Every Confirm/verify step was run, or is marked `not run`
 - [ ] Rollback exists for every deploy and migration step, or the document says it cannot be rolled back
 - [ ] No invented endpoints, hosts, names or numbers; gaps marked `[Cần bổ sung]`
 - [ ] Destructive steps are flagged and have a pre-check

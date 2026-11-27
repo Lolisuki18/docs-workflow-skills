@@ -46,6 +46,7 @@ Resolve **full paths** (global prefix + controller prefix + method path + versio
 - Error body shape from the global exception handler or JSON error helper, and the list of error codes/messages defined in code.
 - Pagination, sorting, filtering parameters if implemented.
 - Side effects worth knowing (sends email, emits event) only if visible in the handler/service.
+- **Runtime deviations.** When the server can run locally, send a real request to every documented endpoint and compare status, body and state changes with the code and any README. Where they differ (status codes, validation gaps such as `null` or wrong types accepted, state transitions, dropped connections), document the real behavior in a `Runtime deviations` note on that endpoint and flag the mismatch with the code or README. Label such facts `observed`. Stdlib handlers (`http.server`, `node:http`) have no automatic 404/405 or error body; document what actually happens. If the server cannot run, say endpoints were not verified at runtime.
 
 ### 3. Choose the format
 
@@ -97,6 +98,7 @@ Examples of good and bad output: `references/examples.md`.
 - [ ] Required/optional flags come from validators/DTO annotations.
 - [ ] Auth column derived from guards/middleware, not from naming.
 - [ ] Example payloads pass the documented constraints.
+- [ ] Each endpoint was checked with a real request, or the handover says it was not; deviations are flagged.
 - [ ] Open `[Cần bổ sung]` items listed.
 
 ## Handover message

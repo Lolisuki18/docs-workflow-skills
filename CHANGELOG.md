@@ -5,6 +5,7 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 ## Unreleased (next: 0.2.0)
 
 ### Added
+- Eval cases `postmortem-01` (no incident named: declines, writes no file) and `postmortem-02` (explicit timeline: only supplied facts, gaps marked).
 - `docs-lifecycle`: an existing flat evidence file is migrated to the module folder only after asking once.
 - Skills: `changelog-release-notes-writer`, `runbook-writer` and `postmortem-writer` (blameless review; one smoke run, see `evals/README.md`); `docs-lifecycle` branch E (release and operations docs).
 - Two eval cases for the new skills (run once, results in `evals/README.md`).
@@ -15,6 +16,8 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 - `LICENSE` (MIT).
 
 ### Changed
+- Real-run fixes: `readme-writer` keeps an existing README's section order and adds only missing sections (reorder only on request); `api-doc-writer` documents and flags runtime deviations and verifies endpoints with real requests; `runbook-writer` runs every Confirm step before writing it (else `not run`) and checks cwd-relative paths, duplicate listeners and blind health checks; `docs-lifecycle` lists `_evidence.md` in the Phase 1 file list and says to copy untracked plan requirement ids into docs.
+- Evals: `adr-01` and `ug-01` gain an approval turn, `ug-01` scopes the vocabulary ban to end-user instructions, and the evals README status matches the results log.
 - Skills tuned after agents ran them on a tiny Python CLI: `docs-lifecycle` gains a "Small scope" rule, a skipped-skills line in the handover, guidance for branch B/D requests without course context, mandated-files wording, line-reference and git-ignored-source rules.
 - `runbook-writer`, `postmortem-writer`, `api-doc-writer` and `user-guide-writer` now stop early (and point to `readme-writer` or the changelog) when there is no operable system, no named incident, no network API or no end-user UI.
 - `srs-sdd-writer` checks that the user wants the course template and has a "Lite mode"; `adr-writer` handles implied alternatives, scope updates and dates; `diagram-writer` has a "type not applicable" outcome, a lightweight check without a renderer and a proportionality rule; `readme-writer` and `changelog-release-notes-writer` cover rotting counts, section reordering, stdlib-only projects, unmerged branches and untagged versions.

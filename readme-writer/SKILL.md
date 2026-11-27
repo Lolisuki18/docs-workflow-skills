@@ -14,7 +14,7 @@ Produces a README whose every command and variable was found in the repo or actu
 - Missing fact -> `[Needs input: <what and where>]` (English) or `[Cần bổ sung: <what and where>]` (Vietnamese). Never "probably" or "typically".
 - No promotional wording. Describe what the project does in 1-3 plain sentences.
 - Do not name an IDE-specific tool; say "run in a terminal at the repo root".
-- Preserve valuable existing README content (badges, links, license, contact). Update, do not wipe. Keep existing valuable sections but move them into the template order below, and report any reordering in the handover.
+- Preserve valuable existing README content (badges, links, license, contact). Update, do not wipe. For an existing README with valuable content keep its section order and wording; add only missing sections or append them. Reorder into the template order only when the user asks, and say in the handover what was kept, added and not reordered.
 - Do not hard-code counts that rot (test counts, file counts); say "as of <date/commit>" or omit.
 
 ## Workflow
@@ -44,7 +44,7 @@ Prefer commands taken from CI or manifests. If the environment allows, run the i
 
 ### 3. Write README.md
 
-Use only sections that have real content, in this order:
+Use only sections that have real content, in this order (for a new README; an existing one keeps its own order, see Hard rules):
 
 1. **Title + one-line description** (what the project does, for whom).
 2. **Tech stack** - table: layer, technology, version (from manifests).
@@ -82,6 +82,7 @@ Examples of good and bad output: `references/examples.md`.
 - [ ] Versions match manifests/Dockerfile.
 - [ ] Ports and URLs match config.
 - [ ] All relative links point to existing files.
+- [ ] Existing README: its section order and wording are preserved; sections missing from the template are listed in the handover, not forced in.
 - [ ] Leftover `[Cần bổ sung: ...]` items are listed in the handover message.
 
 ## Handover message

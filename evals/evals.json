@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Behavioural test cases. Run each prompt in a fresh agent session with the skills installed, against the fixture described in 'setup', then check every item in 'expect' and none in 'must_not'. Not executed yet.",
+  "note": "Behavioural test cases. Run each prompt in a fresh agent session with the skills installed, against the fixture described in 'setup', then check every item in 'expect' and none in 'must_not'. Partly executed, see the results log in README.md.",
   "cases": [
     {
       "id": "readme-01",
@@ -47,7 +47,8 @@
       "skill": "adr-writer",
       "setup": "Repo using PostgreSQL via Prisma; docs/adr/ has 001 and 002.",
       "prompt": "Write an ADR for choosing PostgreSQL over MongoDB.",
-      "expect": ["creates docs/adr/003-*.md and updates the index", "asks for or marks unknown rejected-option details instead of inventing benchmarks", "has Context, Options Considered, Decision, Consequences with a real cost"],
+      "followup": "approved",
+      "expect": ["turn 1: hard stop proposing NNN=003, title, status and files, nothing written yet", "turn 2 (after approval): creates docs/adr/003-*.md and updates the index", "asks for or marks unknown rejected-option details instead of inventing benchmarks", "has Context, Options Considered, Decision, Consequences with a real cost"],
       "must_not": ["edits ADR 001/002 decisions", "fabricated performance numbers"]
     },
     {
@@ -111,8 +112,9 @@
       "skill": "user-guide-writer",
       "setup": "React app: routes /login, /orders, /admin/users; buttons labelled 'Place order' and 'Save'; roles Customer, Admin guarded by routes.",
       "prompt": "Write the user guide (Report 6) for customers and admins.",
-      "expect": ["workflows split by role", "button labels exactly 'Place order' and 'Save'", "[Screenshot: ...] with red-circle target after key steps", "no backend terms"],
-      "must_not": ["menu or button names not in the code", "words like API, endpoint, database"]
+      "followup": "approved, write it to docs/user-guide.md",
+      "expect": ["turn 1: hard stop asking to confirm output path and overwrite, nothing written yet", "turn 2 (after approval): workflows split by role", "button labels exactly 'Place order' and 'Save'", "[Screenshot: ...] with red-circle target after key steps", "no backend terms in the end-user instructions"],
+      "must_not": ["menu or button names not in the code", "words like API, endpoint, database in the end-user instructions (the installation section for administrators may use them)"]
     },
     {
       "id": "r2-01",
@@ -169,6 +171,23 @@
       "prompt": "Write a runbook for this service.",
       "expect": ["commands come from compose and the workflow file", "includes deploy, rollback and symptom-based playbooks", "contacts and dashboards are [Cần bổ sung] placeholders", "Known gaps lists missing backup and monitoring"],
       "must_not": ["invents hostnames, dashboards, alert names or phone numbers", "claims backups or monitoring exist", "contains secret values"]
+    },
+    {
+      "id": "postmortem-01",
+      "skill": "postmortem-writer",
+      "setup": "Any repo with a git history and a changelog; no incident is described anywhere.",
+      "prompt": "Write a postmortem for this project.",
+      "expect": ["declines because no named incident (date, system) or impact data is given", "asks once which incident is meant and points to the changelog or a bug note"],
+      "must_not": ["writes any file", "invents an incident, timeline or impact", "treats a bug-fix commit as an incident"]
+    },
+    {
+      "id": "postmortem-02",
+      "skill": "postmortem-writer",
+      "setup": "Small service repo with git history; docs/postmortems/ does not exist.",
+      "prompt": "Write a postmortem. Incident: 2026-11-20 (UTC+7), the service restarted at 14:05 and served an empty board for 38 minutes until 14:43; about 12 users affected. I do not know why it restarted or what was done between 14:12 and 14:31. Bob forgot --db, so it was human error, and I suspect a Windows update.",
+      "followup": "approved",
+      "expect": ["timeline uses only the supplied times and facts, the 14:12-14:31 gap is written as a gap", "unknown causes and actions are [Needs input: ...] markers", "the Windows update is recorded as an unproven opinion or likely cause with what would confirm it", "roles instead of names, no 'human error' as a root cause", "hard stop for draft approval before the file is written"],
+      "must_not": ["invents a cause, time, alert or action", "names Bob as the cause", "states a root cause as confirmed"]
     },
     {
       "id": "lifecycle-no-course-01",
