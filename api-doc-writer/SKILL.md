@@ -23,11 +23,11 @@ Start each reply with `[API Doc X/5: <Step>]` (per `CONVENTIONS.md`).
 
 | Stack hint | Where endpoints live |
 |---|---|
-| Express/Fastify/Koa/Nest | route files, `@Controller`/`@Get` decorators, `app.use` mounts (resolve prefixes!) |
+| Express/Fastify/Koa/Nest | route files, `@Controller`/`@Get` decorators, `app.use` / `app.setGlobalPrefix` / `@Version()` mounts (resolve prefixes!) |
 | Next.js App Router / Pages | `app/**/route.ts` (`GET`/`POST` exports, `[id]` dynamic segments, omit `(group)` folders) and `pages/api/**`; exclude `"use server"` Server Actions unless the user asks for internal UI mutations |
-| Spring | `@RestController`, `@RequestMapping` (class + method prefix), `@ControllerAdvice` |
-| ASP.NET | `[ApiController]`, `[Route]`, minimal API `MapGet/MapPost` |
-| Django/DRF/FastAPI/Flask | `urls.py`, viewsets, routers, `@app.get` |
+| Spring | `@RestController`, `@RequestMapping` (class + method prefix), `@RestControllerAdvice` / `@ControllerAdvice` |
+| ASP.NET | `[ApiController]`, `[Route]`, minimal API `MapGet/MapPost/MapPut/MapPatch/MapDelete/MapGroup` |
+| Django/DRF/FastAPI/Flask | `urls.py`, viewsets, routers, `@app.get` (FastAPI: `Header(...)` converts `_` to `-`; validation emits `422`) |
 | Go/Rust/PHP/stdlib HTTP (`node:http`, Python) | handler registration (`mux.Handle`, `Router`, `Route::`, `http.createServer`, `BaseHTTPRequestHandler`, `req.method` + `url.pathname`) |
 | CLI only (`argparse`, `click`, `cobra`) | not a network API: see the exit below |
 | Existing spec | `openapi.*`, `swagger.*` - treat as a claim to verify, not as truth |
