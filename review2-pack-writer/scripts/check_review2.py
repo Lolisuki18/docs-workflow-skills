@@ -192,7 +192,7 @@ def check_bm02(path, bm01_text):
     rec('X13', 'PASS' if not no_resp else 'FAIL', 'every finding has a Team response' if not no_resp else f'findings without Team response: {no_resp}')
     need = [r[0] for r in rows if r[si].strip().lower() == 'high' and re.match(r'(kept|planned)', r[ri].strip(), re.I)]
     bm01 = split_sections(bm01_text); s5 = find_section(bm01, r'^5\.\s*Known Gaps') or ''
-    missing = [i for i in need if i not in s5]
+    missing = [i for i in need if not re.search(rf'(?<![A-Za-z0-9_\-]){re.escape(i)}(?![A-Za-z0-9_\-])', s5)]
     rec('X1', 'PASS' if not missing else 'FAIL',
         f'High + Kept/Planned findings: {need or "none"}; missing from BM01 section 5: {missing or "none"}')
     if b5:
@@ -203,7 +203,7 @@ def check_bm02(path, bm01_text):
                 sev = r[0].strip().lower(); vals = [num(c) for c in r[1:5]] + [None] * 4
                 counted = {k: sum(1 for x in rows if x[si].strip().lower() == sev and re.match(k, x[ri].strip(), re.I)) for k in ('fixed', 'kept', 'planned')}
                 total = sum(1 for x in rows if x[si].strip().lower() == sev)
-                ok = vals[0] is not None and int(vals[0]) == total and [int(v or 0) for v in vals[1:4]] == [counted['fixed'], counted['kept'], counted['planned']]
+                ok = all(v is not None for v in vals[:4]) and int(vals[0]) == total and [int(v) for v in vals[1:4]] == [counted['fixed'], counted['kept'], counted['planned']]
                 rec('X13', 'PASS' if ok else 'FAIL', f'summary {r[0]}: table says {vals[:4]}, rows give total {total}, {counted}')
 
 def check_bm04(path):

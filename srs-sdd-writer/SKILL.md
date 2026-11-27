@@ -35,7 +35,7 @@ Start each reply with `[SRS/SDD X/5: <Step>]` (per `CONVENTIONS.md`).
 ### 1. Scope and inputs
 First, check that the user wants the course template (this skill is course-oriented: SEP490 / SWP490). If not, ask before drafting; offer `../readme-writer/` and `../diagram-writer/` for a lighter result. **Hard stop:** confirm target files and overwrite choice before writing Report 3/4 files.
 
-**Lite mode.** For a small single-actor project the user explicitly wants an SRS/SDD for: keep every required heading, but collapse non-applicable sections into one `Section | N/A - reason` table, and list the collapsed sections in the handover.
+**Lite mode.** For a small project (≤ ~5 source files, per `CONVENTIONS.md` §10) the user explicitly wants an SRS/SDD for: keep every required heading, and mark non-applicable sections `N/A - <reason>` (with a summary `Section | N/A - reason` table in the handover).
 
 Confirm: Report 3, Report 4, or both; iteration (which features are implemented); output format (Markdown default; tables paste-ready for Word). Locate: registration form/brief, existing Report 1-5, repo, DB script, previous version (for Record of Changes).
 
