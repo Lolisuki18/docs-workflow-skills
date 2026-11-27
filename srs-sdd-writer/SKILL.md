@@ -30,12 +30,12 @@ Use the shared convention: `A-01`, `UC01`, `FR-01`, `NFR-01`, `BR-01`, `MSG01`, 
 
 ## Workflow
 
-Start each reply with `[SRS/SDD X/5: <Step>]` (per `CONVENTIONS.md`).
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[SRS/SDD X/5: <Step>]`.
 
 ### 1. Scope and inputs
-First, check that the user wants the course template (this skill is course-oriented: SEP490 / SWP490). If not, ask before drafting; offer `../readme-writer/` and `../diagram-writer/` for a lighter result. **Hard stop:** confirm target files and overwrite choice before writing Report 3/4 files.
+First, check that the user wants the course template (this skill is course-oriented: SEP490 / SWP490). If not, ask before drafting; offer `../readme-writer/` and `../diagram-writer/` for a lighter result. **Hard stop:** confirm target files and overwrite choice before writing Report 3/4 files (skip when docs-lifecycle Phase 1 already approved this path).
 
-**Lite mode.** For a small project (≤ ~5 source files, per `CONVENTIONS.md` §10) the user explicitly wants an SRS/SDD for: keep every required heading, and mark non-applicable sections `N/A - <reason>` (with a summary `Section | N/A - reason` table in the handover).
+**Lite mode.** For a small project (small = about 5 or fewer source files, or about 500 lines or fewer, one actor) the user explicitly wants an SRS/SDD for: keep every required heading, and mark non-applicable sections `N/A - <reason>` (with a summary `Section | N/A - reason` table in the handover).
 
 Confirm: Report 3, Report 4, or both; iteration (which features are implemented); output format (Markdown default; tables paste-ready for Word). Locate: registration form/brief, existing Report 1-5, repo, DB script, previous version (for Record of Changes).
 

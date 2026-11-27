@@ -15,7 +15,7 @@ Writes the user-facing guide from what the interface actually contains.
 - **Screenshots are placeholders**, never fabricated images: `[Screenshot: <screen name> - <what is visible> - circle in red: <control/area>]`.
 - Friendly, direct, second person ("Select **Save**"), short sentences, one action per step. No marketing language.
 - Separate flows **by role**. Show a feature only to roles that can use it (from route guards/permissions), and say what the other roles will see (e.g. no menu item).
-- Read `references/report6-user-guide-template.md` first; keep its headings and numbering.
+- Course template (Report 6: role map, 9-row deliverable package): use it only when the user asks for it or the project is a course project; then read `references/report6-user-guide-template.md` first and keep its headings and numbering. Otherwise use the **lite form** below.
 
 ## Guard: an end-user UI is required
 
@@ -23,9 +23,9 @@ If the project has no end-user UI (CLI, library or API only), say so and stop; p
 
 ## Workflow
 
-Start each reply with `[UserGuide X/7: <Step>]` (per `CONVENTIONS.md`).
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[UserGuide X/7: <Step>]`.
 
-1. **Scope.** Which release/iteration, which roles, language of the guide (default English as the report template; ask if Vietnamese is wanted - labels still quoted exactly as shown in the UI). **Hard stop:** confirm target output path (e.g. `docs/[<module>/]user-guide.md`) and overwrite choice before writing files.
+1. **Scope.** Course template or lite form (default lite), which release/iteration, which roles, language of the guide (default English as the report template; ask if Vietnamese is wanted - labels still quoted exactly as shown in the UI). **Hard stop:** confirm target output path (e.g. `docs/<module>/user-guide.md`; single-module repos omit `<module>/`) and overwrite choice before writing files (skip when docs-lifecycle Phase 1 already approved this path).
 2. **Discover the UI** (evidence list `screen -> file:line`):
    - Route table / router config -> screen list and URLs (URLs only if users must type them).
    - Navigation components -> menu structure per role.
@@ -35,7 +35,7 @@ Start each reply with `[UserGuide X/7: <Step>]` (per `CONVENTIONS.md`).
    - Mobile/desktop apps: screens/activities/storyboards and their strings resources.
 3. **Build a role x screen map.** One row per screen; columns = roles (X = can use). Mismatch with SRS 3.1.3 Screen Authorization -> report it, do not hide it.
 4. **Identify workflows** (end-to-end tasks users perform) from SRS use cases/main workflows and routes. Order by the user's journey: sign in -> main tasks -> account/profile.
-5. **Draft** following the template: 1 Deliverable Package, 2 Installation Guides, 3 User Manual (3.1 Overview, 3.2... one section per workflow, grouped by role).
+5. **Draft** following the template: 1 Deliverable Package, 2 Installation Guides, 3 User Manual (3.1 Overview, 3.2... one section per workflow, grouped by role). Lite form: see below.
 6. **Add screenshot placeholders** at: each new screen, each form before submit, each result/confirmation, each error message the guide mentions.
 7. **Self-check** and hand over.
 
@@ -53,6 +53,17 @@ Start each reply with `[UserGuide X/7: <Step>]` (per `CONVENTIONS.md`).
 
 For each task include: purpose, role, what you need first, numbered steps with exact labels in bold, expected result, common problems with the real message text and what to do.
 
+## Lite form (non-course, single actor)
+
+For an app with one kind of user and no course context; skip the role map and the deliverable package. Sections, in order:
+
+1. **What the app is**: 1-3 plain sentences, who it is for.
+2. **Getting started**: how to open or install it, first screen, sign-in if any (verified commands only).
+3. **Tasks, step by step**: one section per task in the step format above, with the exact on-screen messages quoted from code.
+4. **Troubleshooting**: real error/empty-state messages from code, what they mean, what to do.
+
+The verify-against-UI rules and the self-check still apply; the template-heading and Record of Changes checks apply only to the course template.
+
 ## Installation Guides (2.x)
 
 - 2.1 System Requirements: from manifests/Docker/config; for end users of a hosted web app, list supported browsers only if declared somewhere, else `[Cần bổ sung]`.
@@ -66,7 +77,7 @@ For each task include: purpose, role, what you need first, numbered steps with e
 - [ ] Each workflow is under the correct role; role/screen map matches guards.
 - [ ] Each step is one action; each key step has `[Screenshot: ...]` with a red-circle target.
 - [ ] Steps reproduce a real path through the app (routes exist, order is possible).
-- [ ] Template headings preserved; Record of Changes row added.
+- [ ] Template headings preserved; Record of Changes row added (course template only).
 - [ ] `[Cần bổ sung]` items listed.
 
 ## Handover message

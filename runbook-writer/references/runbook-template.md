@@ -1,12 +1,12 @@
 # Runbook template
 
-Save as `docs/runbook.md` (or `docs/ops/<system>.md`). Keep sections in this order so readers always find things in the same place.
+Save as `docs/<module>/runbook.md` (or `docs/ops/<system>.md`; single-module repos omit `<module>/`). Gap placeholder: `[Needs input]` in English documents, `[Cần bổ sung]` in Vietnamese ones (follow the reply language). Keep sections in this order so readers always find things in the same place.
 
 ```markdown
 # Runbook - <system name>
 
 Last verified: <date> by <who> against <commit or tag>
-Environments: <names from the repo; [Cần bổ sung] if unknown>
+Environments: <names from the repo; [Needs input] if unknown>
 
 ## 1. Quick index
 | Symptom | Go to |
@@ -27,8 +27,8 @@ Configuration: <env var names and where they are set; secrets by name and store>
 ## 3. Access and contacts
 | Role | Who | How to reach |
 |---|---|---|
-| Owner | [Cần bổ sung] | |
-| On-call | [Cần bổ sung] | |
+| Owner | [Needs input] | |
+| On-call | [Needs input] | |
 
 ## 4. Routine procedures
 ### 4.1 Deploy
