@@ -25,7 +25,7 @@ Zero-padded, same everywhere: actor `A-01`, use case `UC01`, functional requirem
 
 ## Response label
 
-Start **every** response with `[Docs Phase X/4: <Phase name>]`, e.g. `[Docs Phase 2/4: Evidence Gathering]`.
+Start **every** response with `[Docs Phase X/4: <Phase name>]`, e.g. `[Docs Phase 2/4: Evidence Gathering]`. The sub-skills' own step labels (`[ADR X/6]`, `[README X/4]` ...) are used only when a sub-skill runs standalone.
 
 ## Phase 1 - Discovery & Routing
 
@@ -39,9 +39,10 @@ Start **every** response with `[Docs Phase X/4: <Phase name>]`, e.g. `[Docs Phas
    Branches **B** and **D** are built on the SEP490 / SWP490 course templates. If the user has no course context (a company or open-source project), offer only A, C and E, and say B and D do not apply.
    A request may span branches; split it into ordered steps.
    If the user without course context asks for a branch B/D skill: for an SRS/SDD the user explicitly wants, or a user guide for a project with a real UI, run it; for course-only skills (Report 1/2/5/7, Weekly, Tracking, Review 2 forms) say they are course-oriented and ask. Never skip silently.
-   **Small scope.** For a project or scoped module under ~500 lines of code or with one actor, keep the Phase 1 file list minimal and run a skill only when it applies; list the others as skipped. If `README.md` or `docs/_evidence.md` already belongs to another module, propose `<module>/README.md` (with an optional root index link) and `docs/_evidence-<module>.md` (or a module section) at the HARD STOP.
+   **Small scope.** For a small project or scoped module (small = about 5 or fewer source files, or about 500 lines or fewer, one actor), keep the Phase 1 file list minimal and run a skill only when it applies; list the others as skipped. If `README.md` or `docs/_evidence.md` already belongs to another module, propose the module paths below at the HARD STOP.
 3. Report what exists, what is missing, and what looks stale (dates, git log vs doc mtime) - facts only.
 4. **HARD STOP.** Present: chosen branch(es), target sub-skill per deliverable, exact list of files to create or modify (with paths), and open questions. Do not continue until the user confirms.
+   Sub-skill hard stops that only confirm target path, overwrite or numbering are satisfied by this file-list approval; do not ask again. Hard stops that approve content (draft approval, ADR status) still apply.
 
 ## Phase 2 - Evidence Gathering
 
@@ -59,9 +60,9 @@ Collect only what the confirmed scope needs, and record where each fact came fro
 | Test results | real test runner output, CI artifacts, existing QA files |
 | Template-based reports | the matching file in the sub-skill's `references/` |
 
-Write an evidence list (fact -> source). Anything not found goes to a `[Cần bổ sung: ...]` list shown to the user.
+Write an evidence list (fact -> source). Anything not found goes to a gap list shown to the user. Placeholder: `[Needs input: ...]` in English replies, `[Cần bổ sung: ...]` in Vietnamese replies (follow the reply language).
 
-**Persist it (recommended).** If the user agrees, save the list to `docs/_evidence.md` (columns `Fact | Source (path:line / commit) | Used in`, plus the `[Cần bổ sung]` list and the confirmed file list). Later sessions and sub-skills read it first and only re-verify items whose source files changed (`git log -- <path>`). Never store secrets in it.
+**Persist it (recommended).** If the user agrees, save the list to `docs/<module>/_evidence.md` (columns `Fact | Source (path:line / commit) | Used in`, plus the gap list and the confirmed file list). Later sessions and sub-skills read it first and only re-verify items whose source files changed (`git log -- <path>`). Never store secrets in it.
 
 ## Phase 3 - Drafting
 
@@ -88,22 +89,24 @@ Pass the evidence list and the confirmed file list to the sub-skill. Do not draf
 
 Before handing over:
 
-1. **Anti-drift check.** For each factual claim in the new docs (command, path, endpoint, table, class, env var, label, number), confirm it against the source. Fix or mark `[Cần bổ sung: ...]`.
-2. **Cross-document consistency.** Names of entities, actors, features and endpoints are identical across README, diagrams, API docs, SRS/SDD and user guide.
-3. **Rubric.** If the deliverable is Report 3/4 ask `srs-sdd-writer` to run its rubric self-check; Review 2 forms run the cross-checks in `review2-pack-writer`. For branch (A) use the checklist below.
-4. **Handover note:** files created/changed, skills considered and skipped, with the reason, open `[Cần bổ sung]` items, extensions or tools the user should install (e.g. `hediet.vscode-drawio`), and anything not verified.
+1. **Anti-drift check.** For each factual claim in the new docs (command, path, endpoint, table, class, env var, label, number), confirm it against the source. Fix or mark a gap placeholder.
+2. **Mechanical `file:line` pass.** In the final pass re-derive every `file:line` reference with `grep -n` on the current files and compare it with the doc; fix every mismatch (edits shift lines). Do not hard-code counts that rot (test, file or endpoint counts): state "as of <date/commit>" or omit.
+3. **Cross-document consistency.** Names of entities, actors, features and endpoints are identical across README, diagrams, API docs, SRS/SDD and user guide.
+4. **Rubric.** If the deliverable is Report 3/4 ask `srs-sdd-writer` to run its rubric self-check; Review 2 forms run the cross-checks in `review2-pack-writer`. For branch (A) use the checklist below.
+5. **Handover note:** files created/changed, skills considered and skipped, with the reason, open gap placeholders, extensions or tools the user should install (e.g. `hediet.vscode-drawio`), and anything not verified.
 
 Branch (A) checklist:
 - [ ] Every command was found in a manifest/script/CI file or was actually run.
 - [ ] Every env var appears in code or `.env.example`.
 - [ ] Every diagram element exists in code (table, class, endpoint, state).
-- [ ] Every ADR has Context, Options, Decision, Consequences.
+- [ ] Every ADR has Context, Decision, Consequences; Options only when the user or repo names them.
 - [ ] No promotional wording; no unexplained acronyms.
 
 ## Large or multi-module repos
 
 - Detect modules first (workspaces, `pom.xml` modules, `*.sln` projects, top-level service folders). Ask the user which modules are in scope; do not sample silently.
 - Document one module at a time; keep a shared root README that links to per-module docs.
+- **Module namespacing (one form).** Multi-module repos: `docs/<module>/` for adr, diagrams, api, user-guide, runbook, postmortem and release notes; `docs/<module>/_evidence.md`; `<module>/README.md`; `<module>/CHANGELOG.md`. Single-module repos omit `<module>/`. When namespacing is chosen and a flat `docs/_evidence.md` or `docs/_evidence-<module>.md` from an earlier run exists, ask once whether to move it to `docs/<module>/_evidence.md` or keep it; never rename silently. Add the module paths to the Phase 1 file list.
 - Skip generated and vendored paths (`node_modules`, `dist`, `build`, `target`, `bin`, `obj`, `.venv`, lock files except for versions).
 - When evidence exceeds what can be read, state which parts were read and which were not (coverage note in the handover).
 

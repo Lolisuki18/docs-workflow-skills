@@ -26,7 +26,7 @@ If the user's request does not say which, ask one question.
 
 ## Default Audit workflow
 
-Start each reply with `[Docs Audit X/6: <Step>]` (or `[BM02 Audit X/6: <Step>]` in BM02 mode).
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[Docs Audit X/6: <Step>]` (or `[BM02 Audit X/6: <Step>]` in BM02 mode).
 
 ### 1. Scope
 Confirm: which docs (README, API docs, diagrams, SRS/SDD, User Guide, ADRs, CHANGELOG, tracking), which code (whole repo, a module, or `git diff <base>..HEAD` / last N commits). If the user already specified scope, proceed directly to Step 2. If a diff is given, start from changed files and trace to the docs that mention them.
