@@ -17,7 +17,7 @@ Turns real server code into an accurate API specification. If the code does not 
 
 ## Workflow
 
-Start each reply with `[API Doc X/5: <Step>]` (per `CONVENTIONS.md`).
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[API Doc X/5: <Step>]`.
 
 ### 1. Locate the surface
 
@@ -49,9 +49,9 @@ Resolve **full paths** (global prefix + controller prefix + method path + versio
 
 ### 3. Choose the format
 
-- **Hard stop:** ask once if unspecified (Markdown default for human reading/SDD tables, or OpenAPI 3.x), and ask before overwriting existing `docs/[<module>/]api/` files.
-- Markdown: `docs/[<module>/]api/README.md` index + one file per resource group, or `docs/[<module>/]api/README.md` (or `docs/<module>/api.md`) alone when < ~20 endpoints.
-- OpenAPI: `docs/[<module>/]api/openapi.yaml`, OpenAPI 3.0.x or 3.1.x consistent with the repo's tooling. Use `components/schemas` for DTOs, `components/securitySchemes` for auth, shared `responses` for the error shape. Validate syntax if a validator is available; otherwise say it was not validated.
+- Ask once if the format is unspecified (Markdown default for human reading/SDD tables, or OpenAPI 3.x), and ask before overwriting existing `docs/<module>/api/` files (skip when docs-lifecycle Phase 1 already approved this path). This is a question, not a hard stop. Single-module repos omit `<module>/`.
+- Markdown: `docs/<module>/api/README.md` index + one file per resource group, or that `README.md` alone when < ~20 endpoints.
+- OpenAPI: `docs/<module>/api/openapi.yaml`, OpenAPI 3.0.x or 3.1.x consistent with the repo's tooling. Use `components/schemas` for DTOs, `components/securitySchemes` for auth, shared `responses` for the error shape. Validate syntax if a validator is available; otherwise say it was not validated.
 
 ### 4. Markdown template per endpoint
 

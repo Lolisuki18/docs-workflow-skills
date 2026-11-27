@@ -30,13 +30,13 @@ Produces diagrams whose every table, class, endpoint, actor and state exists in 
 
 ## Workflow
 
-Start each reply with `[Diagram X/7: <Step>]` (per `CONVENTIONS.md`).
+Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[Diagram X/7: <Step>]`.
 
-1. Confirm type, scope (which feature/flow/entity set), target files, and whether to also export `.drawio` (default **yes** for report/SDD/SRS diagrams) (**Hard stop:** wait for explicit approval before writing files to `docs/[<module>/]diagrams/` unless the user asked for an inline draft). Default path: `docs/[<module>/]diagrams/<type>-<subject>.md` (Mermaid fenced block + figure caption `Figure X.Y: <Title>` + evidence line). PlantUML: `docs/[<module>/]diagrams/<type>-<subject>.puml`.
+1. Confirm type, scope (which feature/flow/entity set), target files, and whether to also export `.drawio` (default **yes** for report/SDD/SRS diagrams) (**Hard stop:** wait for explicit approval before writing files to `docs/<module>/diagrams/` unless the user asked for an inline draft (skip when docs-lifecycle Phase 1 already approved this path); single-module repos omit `<module>/`). Default path: `docs/<module>/diagrams/<type>-<subject>.md` (Mermaid fenced block + figure caption `Figure X.Y: <Title>` + evidence line). PlantUML: `docs/<module>/diagrams/<type>-<subject>.puml`.
 2. Gather evidence; keep a list `element -> file:line`.
 3. Draft the code diagram following `references/mermaid-conventions.md` (UML/IEEE report standards, syntax templates, naming, layout limits, per-type patterns).
 4. Self-check (below). Render check: if a Mermaid CLI/preview is available, render it; otherwise run a lightweight check (brackets balanced, every node id declared, `sequenceDiagram` / `erDiagram` / `stateDiagram-v2` / `flowchart` header present) and say clearly "not rendered".
-5. When `.drawio` is requested or in report mode: generate it from the **same element list** using `scripts/drawio_gen.py` (following `references/drawio-xml-guide.md`), save to `docs/[<module>/]diagrams/<type>-<subject>.drawio`.
+5. When `.drawio` is requested or in report mode: generate it from the **same element list** using `scripts/drawio_gen.py` (following `references/drawio-xml-guide.md`), save to `docs/<module>/diagrams/<type>-<subject>.drawio`.
 6. **Extension reminder (mandatory).** Every time you create a `.drawio` file, or when `.vscode/extensions.json` lacks `hediet.vscode-drawio`: tell the user to install **Draw.io Integration (`hediet.vscode-drawio`)** to view and edit `.drawio` inside the IDE (VS Code / Cursor / Antigravity). Offer to add it to `.vscode/extensions.json` under `recommendations`; edit the file only after the user agrees, preserving existing entries.
 7. Handover message.
 
@@ -74,7 +74,7 @@ Examples of good and bad output: `references/examples.md`.
 ## Optional scripts (Python 3; skip and say so if Python is unavailable)
 
 - `scripts/erd_vs_sql.py schema.sql erd.md` - compares tables, columns, PK/FK between a SQL script and a Mermaid `erDiagram`, both directions. Run it for every ERD and quote its result in the handover.
-- `scripts/drawio_gen.py spec.json out.drawio` - builds a `.drawio` from a JSON node/edge list with a layered layout on the 10 px grid and validates ids, endpoints and overlaps. Prefer it over hand-written coordinates; format and node types are in the script's docstring.
+- `scripts/drawio_gen.py spec.json out.drawio` - builds a `.drawio` from a JSON node/edge list with a layered layout on the 10 px grid and validates ids, endpoints and overlaps. Prefer it over hand-written coordinates; format and node types are in the script's docstring. `scripts/test_drawio_gen.py` is its smoke test (edges that skip empty layers).
 
 ## Self-check before handover
 

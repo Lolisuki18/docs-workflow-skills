@@ -5,6 +5,7 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 ## Unreleased (next: 0.2.0)
 
 ### Added
+- `docs-lifecycle`: an existing flat evidence file is migrated to the module folder only after asking once.
 - Skills: `changelog-release-notes-writer`, `runbook-writer` and `postmortem-writer` (blameless review; one smoke run, see `evals/README.md`); `docs-lifecycle` branch E (release and operations docs).
 - Two eval cases for the new skills (run once, results in `evals/README.md`).
 - `scripts/install.py`: links or copies the skills into an agent's skills folder (junctions on Windows, symlinks elsewhere; never overwrites); `--only` / `--exclude` to choose skills.
@@ -20,7 +21,18 @@ Format: newest first. Skills are prompts, so "breaking" means a change in behavi
 - Skill descriptions are English only and shorter (4 trigger phrases, at most 650 characters) to cut the context every installed skill costs. The trigger evals keep their Vietnamese prompts to check that matching still works.
 - `docs-lifecycle` offers branches A, C and E only when there is no course context (B and D are built on the SEP490 / SWP490 templates).
 - `scripts/validate.py` is now the shared validator from `ai-workflow-suite` (allows `evals/`, checks `../<skill>/` links).
-- All twelve skills carry the same "untrusted content" rule.
+- Every skill carries the same "untrusted content" rule.
+- Hard stops: sub-skill stops that only confirm path, overwrite or numbering are satisfied by the `docs-lifecycle` Phase 1 file-list approval (each stop says so); stops that approve content (draft approval, ADR status, existing README outline) still apply. `api-doc-writer`'s format/overwrite question is no longer labelled a hard stop.
+- Labels: sub-skills keep the `[Docs Phase X/4]` label inside `docs-lifecycle` and use their own `[ADR X/6]`-style labels only standalone. The `(per CONVENTIONS.md)` pointers are removed; the small-project rule is written inline and shared (about 5 or fewer source files, or about 500 lines or fewer, one actor).
+- Module namespacing in one form (single-module repos omit `<module>/`): `docs/<module>/` for adr, diagrams, api, user-guide, runbook, postmortem and release notes, `docs/<module>/_evidence.md`, `<module>/README.md`, `<module>/CHANGELOG.md`. The `docs/[<module>/]` bracket notation is gone.
+- Gap placeholders follow the reply language (`[Needs input: ...]` English, `[Cần bổ sung: ...]` Vietnamese), also in `docs-lifecycle` and the runbook and postmortem templates.
+- `adr-writer`: alternatives are listed only when the user or repo names them, otherwise one `Alternatives considered: [Needs input: ...]` line; a git-ignored plan is never cited as a source.
+- `user-guide-writer`: a lite form (what the app is, getting started, tasks, troubleshooting) for non-course, single-actor apps; the Report 6 template is used when the user asks for it.
+- `docs-lifecycle` Phase 4 gains a mechanical `file:line` re-derivation with `grep -n` and a "no counts that rot" reminder.
+- `diagram-writer`: `drawio-xml-guide.md` now matches what `drawio_gen.py` emits (160 px layer spacing, swimlane `startSize=28`, `collapsible=0`).
+
+### Fixed
+- `diagram-writer/scripts/drawio_gen.py` no longer crashes (empty `max()`) when an edge spans layers that hold no nodes; `scripts/test_drawio_gen.py` covers LR and TB.
 
 ## 0.1.0
 
