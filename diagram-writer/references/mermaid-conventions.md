@@ -2,9 +2,9 @@
 
 Diagram-as-code is the canonical source. Mermaid by default; PlantUML when the repo already uses it.
 
-## 1. File layout
+## 1. File layout & Report Standards (UML / IEEE 830 & 1016)
 
-- Mermaid: `docs/diagrams/<type>-<subject>.md`, content layout:
+- Mermaid: `docs/[<module>/]diagrams/<type>-<subject>.md`, content layout:
 
 ````text
 # <Title>
@@ -14,8 +14,14 @@ Diagram-as-code is the canonical source. Mermaid by default; PlantUML when the r
 ...
 ```
 
+*Figure X.Y: <Diagram Type> — <Subject>*
+
 Evidence: `path/File.java`, `db/migrations/001_init.sql`
 ````
+- **Report conventions:**
+  - Every diagram in a report has a numbered caption below it (`Figure X.Y: <Title>`) and is referenced in prose before or after the figure.
+  - Traceability: actors (`A-01`), use cases (`UC01`), workflows (`WF-01`), requirements (`FR-01`), entities, and endpoints must use identical IDs/names across SRS/SDD tables and diagrams.
+  - UML connectors: solid arrow for association/control flow, dashed arrow (`-.->`) for `<<include>>` / `<<extend>>` / dependency, hollow triangle for generalization/implementation. In `.drawio` exports, use `scripts/drawio_gen.py` (consistent muted palette, 10 px grid, clean typography; export SVG or high-DPI PNG when embedding in Word/PDF).
 - PlantUML: `docs/diagrams/<type>-<subject>.puml` (`@startuml` ... `@enduml`).
 - Type prefixes: `usecase`, `erd`, `sequence`, `activity`, `state`, `architecture`.
 - Embedding in a README/SDD: paste the fenced block or link to the file. Keep one source; do not hand-edit copies.
