@@ -52,7 +52,7 @@ Use only sections that have real content, in this order:
 4. **Getting started**
    - Clone
    - Configure environment: copy `.env.example` -> `.env`; table of variables (name, purpose, required, example from the file). Never print real secrets.
-   - Install dependencies (stdlib-only project: write "nothing to install" only when the evidence supports it, i.e. no manifest found)
+   - Install dependencies (stdlib-only project: write "nothing to install" when no manifest is found or the manifest declares no external dependencies)
    - Database setup / migrations / seed
    - Run (dev) - exact command(s) and the URL/port found in config
    - Run with Docker (only if Dockerfile/compose exists)

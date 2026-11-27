@@ -27,7 +27,7 @@ Start each reply with `[API Doc X/5: <Step>]` (per `CONVENTIONS.md`).
 | Spring | `@RestController`, `@RequestMapping` (class + method prefix), `@ControllerAdvice` |
 | ASP.NET | `[ApiController]`, `[Route]`, minimal API `MapGet/MapPost` |
 | Django/DRF/FastAPI/Flask | `urls.py`, viewsets, routers, `@app.get` |
-| Go/Rust/PHP/stdlib HTTP | handler registration (`mux.Handle`, `Router`, `Route::`, `BaseHTTPRequestHandler`) |
+| Go/Rust/PHP/stdlib HTTP (`node:http`, Python) | handler registration (`mux.Handle`, `Router`, `Route::`, `http.createServer`, `BaseHTTPRequestHandler`, `req.method` + `url.pathname`) |
 | CLI only (`argparse`, `click`, `cobra`) | not a network API: see the exit below |
 | Existing spec | `openapi.*`, `swagger.*` - treat as a claim to verify, not as truth |
 
@@ -40,9 +40,9 @@ Resolve **full paths** (global prefix + controller prefix + method path + versio
 - Method, full path, handler name.
 - Path / query / header / body parameters: name, type, required, constraints (from validators: length, regex, min/max, enum).
 - Request body DTO and response DTO (field list with types and nullability).
-- Auth: middleware/guard/annotation -> required role/scope, token type. "Public" only if no guard applies.
-- Status codes actually returned (explicit `res.status`, `ResponseEntity`, thrown exceptions mapped by the global handler).
-- Error body shape from the global exception handler and the list of error codes/messages defined in code.
+- Auth: middleware/guard/annotation or helper/service-layer role checks (`requireActor`, ownership checks) -> required role/scope, token type. "Public" only if no guard applies.
+- Status codes actually returned (explicit `res.status`, `res.writeHead`, `ResponseEntity`, inline `try/catch` or global handler).
+- Error body shape from the global exception handler or JSON error helper, and the list of error codes/messages defined in code.
 - Pagination, sorting, filtering parameters if implemented.
 - Side effects worth knowing (sends email, emits event) only if visible in the handler/service.
 
