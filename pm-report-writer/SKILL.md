@@ -34,7 +34,7 @@ Report 7 aggregates Reports 1-6; read its template and then the current source o
 
 Inside `docs-lifecycle` keep its `[Docs Phase X/4]` label; otherwise start each reply with `[PM Report X/5: <Step>]`. **Hard stop:** confirm target path and overwrite choice before writing `.csv`/`.docx`/`.xlsx` files (skip when docs-lifecycle Phase 1 already approved this path).
 
-1. **Scope.** Which report, which iteration/week, output format: Markdown tables (default), CSV, or section text for Word. Ask for team/project info the repo cannot provide (member names, roles, supervisor) or mark as `[Cần bổ sung]`.
+1. **Scope.** First verify the user wants the SEP490/SWP490 course report template; if not, stop before drafting and offer `../readme-writer/` or `../changelog-release-notes-writer/`. Otherwise confirm which report, which iteration/week, output format (Markdown tables default, CSV, or section text for Word), and ask for team/project info the repo cannot provide (member names, roles, supervisor) or mark as `[Needs input: ...]` / `[Cần bổ sung]`.
 2. **Evidence by report**
 
 | Report | Evidence |

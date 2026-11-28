@@ -50,7 +50,7 @@ Resolve **full paths** (global prefix + controller prefix + method path + versio
 
 ### 3. Choose the format
 
-- Ask once if the format is unspecified (Markdown default for human reading/SDD tables, or OpenAPI 3.x), and ask before overwriting existing `docs/<module>/api/` files (skip when docs-lifecycle Phase 1 already approved this path). This is a question, not a hard stop. Single-module repos omit `<module>/`.
+- **Hard stop** (skip when `docs-lifecycle` Phase 1 already approved this path): ask once for format (Markdown default for human reading/SDD tables, or OpenAPI 3.x), confirm target path (`docs/[<module>/]api/`), and confirm before overwriting existing files. Single-module repos omit `<module>/`.
 - Markdown: `docs/<module>/api/README.md` index + one file per resource group, or that `README.md` alone when < ~20 endpoints.
 - OpenAPI: `docs/<module>/api/openapi.yaml`, OpenAPI 3.0.x or 3.1.x consistent with the repo's tooling. Use `components/schemas` for DTOs, `components/securitySchemes` for auth, shared `responses` for the error shape. Validate syntax if a validator is available; otherwise say it was not validated.
 
@@ -82,7 +82,7 @@ Creates an order for the authenticated user.
 | 401 | Missing/invalid token | `ErrorResponse` |
 ````
 
-Group by resource. Start the doc with: base URL (only if in config, else `[Cần bổ sung]`), auth overview, common error shape, error-code table, pagination convention.
+Group by resource. Start the doc with: base URL (only if in config, else `[Needs input: base URL]` / `[Cần bổ sung]`), auth overview, common error shape, error-code table, pagination convention.
 
 ### 5. Summary table (for SDD or index)
 
@@ -99,7 +99,7 @@ Examples of good and bad output: `references/examples.md`.
 - [ ] Auth column derived from guards/middleware, not from naming.
 - [ ] Example payloads pass the documented constraints.
 - [ ] Each endpoint was checked with a real request, or the handover says it was not; deviations are flagged.
-- [ ] Open `[Cần bổ sung]` items listed.
+- [ ] Open `[Needs input: ...]` / `[Cần bổ sung]` items listed.
 
 ## Handover message
 
