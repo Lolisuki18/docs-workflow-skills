@@ -46,7 +46,7 @@ Extract verifiable claims from each doc, with `file:line`:
 | CHANGELOG / notes | version/tag, commit SHAs, test counts/commands (note snapshot date vs HEAD) |
 
 ### 3. Verify against code
-For each claim find the source (grep, read, parse manifests, read migrations). Classify: **Match**, **Mismatch**, **Missing in docs** (code feature undocumented), **Missing in code** (documented, not found), **Not verifiable**.
+For each claim find the source (grep, read, parse manifests, read migrations). Classify: **Match**, **Mismatch**, **Missing in docs** (code feature undocumented), **Missing in code** (documented, not found), **Not verifiable**. Optionally run `scripts/check_refs.py <docs_dir> [repo_root]` to mechanically verify relative links and `file:line` ranges.
 
 ### 4. Severity
 
